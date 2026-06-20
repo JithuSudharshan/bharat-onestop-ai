@@ -1,11 +1,26 @@
-import React from 'react'
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import DashboardLayout from './layouts/DashboardLayout';
+import Dashboard from './pages/Dashboard';
+import Profile from './pages/Profile';
+import Schemes from './pages/Schemes';
+import Documents from './pages/Documents';
+import Assistant from './pages/Assistant';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-      <h1 className="text-4xl font-bold text-blue-600">Bharat OneStop AI Citizen Copilot</h1>
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<DashboardLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="schemes" element={<Schemes />} />
+          <Route path="documents" element={<Documents />} />
+          <Route path="assistant" element={<Assistant />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
