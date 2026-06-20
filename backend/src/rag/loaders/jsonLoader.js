@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const SCHEMES_DIR = path.join(__dirname, '../../../../knowledge-base/schemes');
+const SCHEMES_DIR = path.join(__dirname, '../../../knowledge-base/schemes');
 
 const loadAllSchemes = () => {
   if (!fs.existsSync(SCHEMES_DIR)) {

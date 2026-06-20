@@ -24,12 +24,17 @@ const recommend = async (profile) => {
   const responseText = await generateContent(prompt);
 
   // 6. Parse and Validate JSON
-  const cleaned = responseText.replace(/```json\n?/gi, '').replace(/```\n?/g, '').trim();
+  let cleaned = responseText.trim();
+  const jsonMatch = responseText.match(/```(?:json)?\s*([\s\S]*?)```/i);
+  if (jsonMatch) {
+    cleaned = jsonMatch[1].trim();
+  }
   
   let result;
   try {
     result = JSON.parse(cleaned);
   } catch (error) {
+    console.error('Raw AI Response:', responseText);
     const err = new Error('AI recommendation failed to return structured data');
     err.statusCode = 502;
     throw err;

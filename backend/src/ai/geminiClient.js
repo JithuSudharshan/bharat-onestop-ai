@@ -15,7 +15,8 @@ const initializeGemini = () => {
     temperature: 0.7,
     topP: 0.9,
     topK: 50,
-    maxOutputTokens: 2048,
+    maxOutputTokens: 8192,
+    responseMimeType: 'application/json',
   };
 
   const safetySettings = [
@@ -38,7 +39,7 @@ const initializeGemini = () => {
   ];
 
   model = genAI.getGenerativeModel({
-    model: process.env.GEMINI_MODEL || 'gemini-1.5-flash',
+    model: process.env.GEMINI_MODEL || 'gemini-2.5-flash',
     generationConfig,
     safetySettings,
   });
@@ -61,7 +62,7 @@ const generateContent = async (prompt) => {
 
 const embedContent = async (text) => {
   if (!genAI) initializeGemini();
-  const embeddingModel = genAI.getGenerativeModel({ model: 'text-embedding-004' });
+  const embeddingModel = genAI.getGenerativeModel({ model: 'gemini-embedding-2' });
   const result = await embeddingModel.embedContent(text);
   return result.embedding.values;
 };
