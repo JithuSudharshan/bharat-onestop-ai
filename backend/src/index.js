@@ -8,6 +8,7 @@ const authRoutes = require('./routes/authRoutes');
 const profileRoutes = require('./routes/profileRoutes');
 const aiRoutes = require('./routes/aiRoutes');
 const ragRoutes = require('./routes/ragRoutes');
+const documentRoutes = require('./documents/routes/documentRoutes');
 const errorHandler = require('./middleware/errorHandler');
 
 // Connect to MongoDB
@@ -31,6 +32,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/ai', aiRoutes);
 app.use('/api/rag', ragRoutes);
+app.use('/api/documents', documentRoutes);
 
 // Basic health check route
 app.get('/api/health', (req, res) => {
