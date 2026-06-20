@@ -4,9 +4,10 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ShieldCheck, Phone, Lock, Loader2, UserPlus } from 'lucide-react';
 import { GlassPanel } from '../components/ui/GlassPanel';
+import { GoogleLogin } from '@react-oauth/google';
 
 const Register = () => {
-  const { register } = useAuth();
+  const { register, loginWithGoogle } = useAuth();
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -52,6 +53,30 @@ const Register = () => {
               {error}
             </div>
           )}
+
+          <div className="flex justify-center mb-6 w-full overflow-hidden rounded-xl">
+            <GoogleLogin
+              onSuccess={credentialResponse => {
+                loginWithGoogle(credentialResponse.credential).catch(err => {
+                  setError(err.response?.data?.message || 'Google Registration failed');
+                });
+              }}
+              onError={() => {
+                setError('Google Registration failed');
+              }}
+              theme="filled_black"
+              size="large"
+              width="100%"
+              text="signup_with"
+              shape="rectangular"
+            />
+          </div>
+
+          <div className="flex items-center gap-4 mb-6">
+            <div className="flex-1 h-px bg-white/10"></div>
+            <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Or register with Phone</span>
+            <div className="flex-1 h-px bg-white/10"></div>
+          </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>

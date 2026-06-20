@@ -11,6 +11,7 @@ const {
   registerValidator,
   loginValidator,
 } = require('../middleware/validators/authValidators');
+const { googleLogin } = require('../auth/googleController');
 const validate = require('../middleware/validate');
 const verifyToken = require('../middleware/verifyToken');
 
@@ -24,6 +25,7 @@ const authLimiter = rateLimit({
 
 router.post('/register', authLimiter, registerValidator, validate, register);
 router.post('/login', authLimiter, loginValidator, validate, login);
+router.post('/google', authLimiter, googleLogin);
 router.post('/logout', verifyToken, logout);
 router.post('/refresh', refreshToken);
 router.get('/me', verifyToken, getMe);

@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { loginUser, registerUser, logoutUser as apiLogout } from '../api/authApi';
+import { loginUser, registerUser, logoutUser as apiLogout, googleLogin } from '../api/authApi';
 import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext();
@@ -42,6 +42,12 @@ export const AuthProvider = ({ children }) => {
     navigate('/onboarding');
   };
 
+  const loginWithGoogle = async (credential) => {
+    const data = await googleLogin(credential);
+    setUser(data.data.user);
+    navigate('/dashboard');
+  };
+
   const logout = () => {
     apiLogout();
     setUser(null);
@@ -49,7 +55,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, register, loginWithGoogle, logout, loading }}>
       {!loading && children}
     </AuthContext.Provider>
   );

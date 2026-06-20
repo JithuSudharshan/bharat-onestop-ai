@@ -9,8 +9,17 @@ export const loginUser = async (phone, password) => {
   return response.data;
 };
 
-export const registerUser = async (phone, password, role = 'citizen') => {
-  const response = await apiClient.post('/auth/register', { phone, password, role });
+export const registerUser = async (email, password, role = 'citizen') => {
+  const response = await apiClient.post('/auth/register', { email, password, role });
+  if (response.data.success) {
+    localStorage.setItem('token', response.data.data.token);
+    localStorage.setItem('user', JSON.stringify(response.data.data.user));
+  }
+  return response.data;
+};
+
+export const googleLogin = async (credential) => {
+  const response = await apiClient.post('/auth/google', { credential });
   if (response.data.success) {
     localStorage.setItem('token', response.data.data.token);
     localStorage.setItem('user', JSON.stringify(response.data.data.user));
