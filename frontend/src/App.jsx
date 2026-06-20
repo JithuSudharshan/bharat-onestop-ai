@@ -45,6 +45,8 @@ function App() {
             <Route path="documents" element={<Documents />} />
             <Route path="assistant" element={<Assistant />} />
           </Route>
+          
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

@@ -68,7 +68,7 @@ export const DocumentCenter = () => {
               </div>
               
               <div className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-white space-y-2">
-                {Object.entries(result.extracted).map(([key, val]) => (
+                {Object.entries(result.extractedData || {}).map(([key, val]) => (
                   <div key={key} className="flex justify-between items-center py-1">
                     <span className="text-sm text-gray-500 capitalize">{key}</span>
                     <span className="text-sm font-bold text-gray-900">{val}</span>

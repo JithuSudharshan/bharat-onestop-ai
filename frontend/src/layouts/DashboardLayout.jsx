@@ -9,11 +9,11 @@ const DashboardLayout = () => {
   const { logout, user } = useAuth();
 
   const navItems = [
-    { name: 'Dashboard', path: '/', icon: Home },
-    { name: 'Profile', path: '/profile', icon: User },
-    { name: 'Schemes', path: '/schemes', icon: FileText },
-    { name: 'Documents', path: '/documents', icon: Upload },
-    { name: 'AI Assistant', path: '/assistant', icon: MessageSquare },
+    { name: 'Dashboard', path: '/dashboard', icon: Home },
+    { name: 'Profile', path: '/dashboard/profile', icon: User },
+    { name: 'Schemes', path: '/dashboard/schemes', icon: FileText },
+    { name: 'Documents', path: '/dashboard/documents', icon: Upload },
+    { name: 'AI Assistant', path: '/dashboard/assistant', icon: MessageSquare },
   ];
 
   return (
@@ -74,11 +74,17 @@ const DashboardLayout = () => {
         <div className="p-4">
           <div className="bg-[#16213E] rounded-2xl p-4 border border-gray-800">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center text-white font-bold border-2 border-gray-800 uppercase">
-                {user?.phone ? user.phone.substring(0, 2) : 'U'}
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center text-white font-bold border-2 border-gray-800 uppercase overflow-hidden">
+                {user?.profileImage ? (
+                  <img src={user.profileImage} alt="Profile" className="w-full h-full object-cover" />
+                ) : (
+                  user?.name ? user.name.substring(0, 2) : 'U'
+                )}
               </div>
               <div>
-                <p className="text-sm font-bold text-white leading-tight">User {user?.phone?.slice(-4)}</p>
+                <p className="text-sm font-bold text-white leading-tight">
+                  {user?.name || (user?.email ? user.email.split('@')[0] : 'Citizen')}
+                </p>
                 <p className="text-xs text-gray-400">Citizen Profile</p>
               </div>
             </div>
