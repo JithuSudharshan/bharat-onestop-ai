@@ -32,6 +32,21 @@ const errorHandler = (err, req, res, next) => {
     statusCode = 401;
   }
 
+  // GCP Cloud Logging Integration (Structured Logging)
+  if (process.env.NODE_ENV === 'production') {
+    console.error(JSON.stringify({
+      severity: statusCode >= 500 ? 'ERROR' : 'WARNING',
+      message: err.message,
+      stack_trace: err.stack,
+      request_url: req.originalUrl,
+      request_method: req.method,
+      user: req.user ? req.user.id : 'unauthenticated'
+    }));
+  } else {
+    // Local dev logging
+    console.error(`[Error] ${statusCode} - ${message}`);
+  }
+
   res.status(statusCode).json({
     success: false,
     message,

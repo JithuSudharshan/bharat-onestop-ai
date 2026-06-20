@@ -1,6 +1,7 @@
 const Document = require('../models/Document');
 const { extractDocumentData } = require('../../ai/agents/documentAgent');
 const profileService = require('../../services/profileService');
+const storageService = require('../../services/storage/storageService');
 
 const processUploadedDocument = async (userId, file) => {
   // 1. Save document record to DB (Status: processing)
@@ -14,16 +15,20 @@ const processUploadedDocument = async (userId, file) => {
   });
 
   try {
-    // 2. Extract Data using Gemini Vision
+    // 2. Extract Data using Gemini Vision (using the local file)
     const extractedData = await extractDocumentData(file.path, file.mimetype);
 
-    // 3. Update Document Record
+    // 3. Persist the file using the abstracted Storage Service
+    const persistentPath = await storageService.saveFile(file);
+
+    // 4. Update Document Record
     docRecord.status = 'processed';
+    docRecord.filePath = persistentPath; // Update with persistent GCS URI or local path
     docRecord.documentType = extractedData.documentType;
     docRecord.extractedData = extractedData;
     await docRecord.save();
 
-    // 4. Opportunistically update Citizen Profile
+    // 5. Opportunistically update Citizen Profile
     try {
       const existingProfile = await profileService.getProfile(userId);
       const updates = {};

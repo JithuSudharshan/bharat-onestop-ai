@@ -1,17 +1,38 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
+import axios from 'axios';
 
-export const apiClient = async (endpoint, options = {}) => {
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-    ...options,
-    headers: {
-      'Content-Type': 'application/json',
-      ...options.headers,
-    },
-  });
+const apiClient = axios.create({
+  baseURL: 'http://localhost:5001/api', // Backend base URL
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
 
-  if (!response.ok) {
-    throw new Error('API request failed');
+// Add a request interceptor to attach the JWT token
+apiClient.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
   }
+);
 
-  return response.json();
-};
+// Add a response interceptor to handle global errors (like token expiration)
+apiClient.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response && error.response.status === 401) {
+      // Auto-logout if token is invalid or expired
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      window.dispatchEvent(new Event('auth-expired'));
+    }
+    return Promise.reject(error);
+  }
+);
+
+export default apiClient;
