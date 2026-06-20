@@ -3,8 +3,11 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { Home, User, FileText, Upload, MessageSquare, Bell, Search, LogOut, Settings } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { TrustBadge } from '../components/dashboard/TrustBadge';
+import { useAuth } from '../context/AuthContext';
 
 const DashboardLayout = () => {
+  const { logout, user } = useAuth();
+
   const navItems = [
     { name: 'Dashboard', path: '/', icon: Home },
     { name: 'Profile', path: '/profile', icon: User },
@@ -71,11 +74,11 @@ const DashboardLayout = () => {
         <div className="p-4">
           <div className="bg-[#16213E] rounded-2xl p-4 border border-gray-800">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center text-white font-bold border-2 border-gray-800">
-                RK
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center text-white font-bold border-2 border-gray-800 uppercase">
+                {user?.phone ? user.phone.substring(0, 2) : 'U'}
               </div>
               <div>
-                <p className="text-sm font-bold text-white leading-tight">Ramesh Kumar</p>
+                <p className="text-sm font-bold text-white leading-tight">User {user?.phone?.slice(-4)}</p>
                 <p className="text-xs text-gray-400">Citizen Profile</p>
               </div>
             </div>
@@ -83,7 +86,7 @@ const DashboardLayout = () => {
               <button className="flex-1 flex items-center justify-center gap-2 py-2 bg-white/5 hover:bg-white/10 text-xs font-medium text-gray-300 rounded-lg transition">
                 <Settings size={14} /> Settings
               </button>
-              <button className="p-2 bg-white/5 hover:bg-red-500/20 hover:text-red-400 text-gray-400 rounded-lg transition">
+              <button onClick={logout} className="p-2 bg-white/5 hover:bg-red-500/20 hover:text-red-400 text-gray-400 rounded-lg transition">
                 <LogOut size={14} />
               </button>
             </div>

@@ -1,11 +1,14 @@
+import apiClient from './apiClient';
+
 export const uploadDocument = async (file) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        success: true,
-        documentType: "Aadhaar Card",
-        extracted: { name: "Ramesh Kumar", age: 45, location: "Kerala" }
-      });
-    }, 2500); // Simulate Gemini Vision processing time
+  const formData = new FormData();
+  formData.append('document', file);
+
+  const response = await apiClient.post('/documents/upload', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
   });
+  
+  return response.data.data.document;
 };
