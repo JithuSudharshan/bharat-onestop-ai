@@ -1,6 +1,7 @@
 const { embedContent, generateContent } = require('../geminiClient');
-const { similaritySearch } = require('../../rag/retriever');
 const { getRecommendationTemplate } = require('../promptTemplates/schemeRecommendationTemplate');
+const { getEvidenceContext } = require('../../rag/citations/citationService');
+const { formatSourcesForPrompt } = require('../../rag/citations/sourceFormatter');
 
 const recommend = async (profile) => {
   // 1. Generate a search query based on profile
@@ -8,14 +9,14 @@ const recommend = async (profile) => {
   
   // 2. Embed and retrieve chunks
   const queryEmbedding = await embedContent(searchQuery);
-  const chunks = await similaritySearch.search(queryEmbedding, 8); // Get top 8 chunks
+  const chunks = await getEvidenceContext(queryEmbedding, 8); // Get top 8 chunks
   
   if (chunks.length === 0) {
     return { recommendedSchemes: [] };
   }
 
-  // 3. Format chunks for prompt
-  const contextString = chunks.map(c => `[${c.sourceFile} - ${c.metadata.chunkType}]\n${c.content}\n`).join('\n---\n');
+  // 3. Format chunks for prompt with strict Evidence/Citation layout
+  const contextString = formatSourcesForPrompt(chunks);
 
   // 4. Generate Prompt
   const prompt = getRecommendationTemplate(profile, contextString);
