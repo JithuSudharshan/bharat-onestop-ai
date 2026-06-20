@@ -1,5 +1,6 @@
 const { orchestrate } = require('../ai/agents/AgentOrchestrator');
 const CitizenUnderstandingAgent = require('../ai/agents/CitizenUnderstandingAgent');
+const SchemeRecommendationAgent = require('../ai/agents/SchemeRecommendationAgent');
 const profileService = require('../services/profileService');
 
 const chat = async (req, res, next) => {
@@ -66,7 +67,38 @@ const analyzeProfile = async (req, res, next) => {
   }
 };
 
+const recommendSchemes = async (req, res, next) => {
+  try {
+    let profile;
+    try {
+      profile = await profileService.getProfile(req.user.id);
+    } catch (error) {
+      return res.status(400).json({
+        success: false,
+        message: 'Please complete your citizen profile before getting recommendations.',
+      });
+    }
+
+    if (!profile.isProfileComplete) {
+      return res.status(400).json({
+        success: false,
+        message: 'Please complete the mandatory fields in your citizen profile first.',
+      });
+    }
+
+    const result = await SchemeRecommendationAgent.recommend(profile);
+
+    res.status(200).json({
+      success: true,
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   chat,
   analyzeProfile,
+  recommendSchemes,
 };

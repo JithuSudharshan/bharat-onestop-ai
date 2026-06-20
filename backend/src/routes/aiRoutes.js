@@ -1,7 +1,7 @@
 const express = require('express');
 const { body } = require('express-validator');
 const rateLimit = require('express-rate-limit');
-const { chat, analyzeProfile } = require('../controllers/aiController');
+const { chat, analyzeProfile, recommendSchemes } = require('../controllers/aiController');
 const validate = require('../middleware/validate');
 const verifyToken = require('../middleware/verifyToken');
 
@@ -32,5 +32,6 @@ const chatValidator = [
 
 router.post('/chat', chatValidator, validate, chat);
 router.post('/analyze', analyzeProfile);
+router.post('/recommend', recommendSchemes);
 
 module.exports = router;
