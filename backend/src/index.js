@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const connectDB = require('./utils/db');
 const authRoutes = require('./routes/authRoutes');
+const profileRoutes = require('./routes/profileRoutes');
 const errorHandler = require('./middleware/errorHandler');
 
 // Connect to MongoDB
@@ -25,6 +26,7 @@ app.use(cookieParser());
 
 // Mount routes
 app.use('/api/auth', authRoutes);
+app.use('/api/profile', profileRoutes);
 
 // Basic health check route
 app.get('/api/health', (req, res) => {
