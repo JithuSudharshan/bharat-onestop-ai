@@ -34,7 +34,7 @@ const Onboarding = () => {
         isProfileComplete: true
       };
       await updateProfile(payload);
-      navigate('/');
+      navigate('/dashboard');
     } catch (err) {
       console.error(err);
     } finally {

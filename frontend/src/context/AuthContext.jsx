@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (phone, password) => {
     const data = await loginUser(phone, password);
     setUser(data.data.user);
-    navigate('/');
+    navigate('/dashboard');
   };
 
   const register = async (phone, password) => {

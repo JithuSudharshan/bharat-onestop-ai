@@ -1,6 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #050816;
+    color: #e5e7eb;
+    @apply font-sans antialiased selection:bg-ai-blue selection:text-white;
+    overflow-x: hidden;
+  }
+}
 
 @layer utilities {
   .no-scrollbar::-webkit-scrollbar {
@@ -9,6 +20,14 @@
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+  
+  .glass-panel {
+    @apply bg-ai-glass backdrop-blur-xl border border-ai-glassBorder shadow-glass;
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-ai-blue to-ai-purple;
   }
 }
 

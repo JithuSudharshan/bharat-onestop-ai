@@ -4,10 +4,15 @@ import { cn } from './AnimatedCard';
 export const GlassPanel = ({ children, className }) => {
   return (
     <div className={cn(
-      "bg-white/70 backdrop-blur-md border border-white/40 shadow-sm rounded-2xl",
+      "bg-ai-glass backdrop-blur-xl border border-ai-glassBorder shadow-glass rounded-3xl relative overflow-hidden",
       className
     )}>
-      {children}
+      {/* Subtle top inner highlight for 3D effect */}
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+      
+      <div className="relative z-10">
+        {children}
+      </div>
     </div>
   );
 };

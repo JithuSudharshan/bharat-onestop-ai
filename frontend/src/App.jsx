@@ -10,6 +10,7 @@ import Assistant from './pages/Assistant';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Onboarding from './pages/Onboarding';
+import Landing from './pages/Landing';
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -22,6 +23,7 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <Routes>
+          <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/onboarding" element={
@@ -30,7 +32,7 @@ function App() {
             </PrivateRoute>
           } />
           
-          <Route path="/" element={
+          <Route path="/dashboard" element={
             <PrivateRoute>
               <DashboardLayout />
             </PrivateRoute>
