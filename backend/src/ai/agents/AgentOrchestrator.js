@@ -2,6 +2,8 @@ const SchemeDiscoveryAgent = require('./SchemeDiscoveryAgent');
 const EligibilityAgent = require('./EligibilityAgent');
 const DocumentAgent = require('./DocumentAgent');
 const ChatAgent = require('./ChatAgent');
+const { detectLanguage } = require('../language/languageDetector');
+const { translateToEnglish, translateToLanguage } = require('../language/translationService');
 
 // Keyword-based intent detection
 const detectIntent = (message) => {
@@ -13,31 +15,43 @@ const detectIntent = (message) => {
 };
 
 const orchestrate = async ({ profile, message, history = [] }) => {
-  const intent = detectIntent(message);
+  // 1. Language Detection & Translation to English
+  const detectedLang = await detectLanguage(message);
+  const isNativeEnglish = detectedLang === 'en';
+  const englishMessage = isNativeEnglish ? message : await translateToEnglish(message);
 
+  // 2. Intent Detection (using English text)
+  const intent = detectIntent(englishMessage);
+
+  // 3. Process Request Internally in English
   let result;
   switch (intent) {
     case 'scheme_search':
-      result = await SchemeDiscoveryAgent.processRequest(profile, message);
+      result = await SchemeDiscoveryAgent.processRequest(profile, englishMessage);
       break;
     case 'eligibility':
-      result = await EligibilityAgent.processRequest(profile, message);
+      result = await EligibilityAgent.processRequest(profile, englishMessage);
       break;
     case 'document_guide':
-      result = await DocumentAgent.processRequest(profile, message);
+      result = await DocumentAgent.processRequest(profile, englishMessage);
       break;
     case 'general_chat':
     default:
-      result = await ChatAgent.processRequest(profile, message, history);
+      result = await ChatAgent.processRequest(profile, englishMessage, history);
       break;
   }
 
-  // The chat agent returns updated history, others are single-turn but we can pass history back
+  // 4. Translate Response back to native language if needed
+  if (!isNativeEnglish && result.response) {
+    result.response = await translateToLanguage(result.response, detectedLang);
+  }
+
+  // 5. Update History
   if (!result.history) {
     result.history = [
       ...history,
-      { role: 'user', parts: [{ text: message }] },
-      { role: 'model', parts: [{ text: result.response }] },
+      { role: 'user', parts: [{ text: message }] }, // Store original message
+      { role: 'model', parts: [{ text: result.response }] }, // Store translated response
     ];
   }
 
