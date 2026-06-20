@@ -1,0 +1,181 @@
+[
+  {
+    "schemeId": "EDU_001",
+    "schemeName": "Right to Education (RTE) Act Provisions",
+    "category": "education",
+    "description": "The RTE Act mandates free and compulsory education for all children. Notably, Section 12(1)(c) mandates private unaided schools to reserve 25% of their entry-level seats for children from economically weaker sections (EWS) and disadvantaged groups.",
+    "eligibilityCriteria": [
+      "Children aged between 6 to 14 years.",
+      "For the 25% private school quota: Child must belong to EWS (family income below state-defined threshold) or Disadvantaged Groups (SC/ST, orphans, children with special needs)."
+    ],
+    "benefits": [
+      "Free and compulsory elementary education.",
+      "Free tuition, books, and uniforms for students admitted under the 25% quota in private schools up to Class 8.",
+      "No admission fee or capitation fee can be charged."
+    ],
+    "requiredDocuments": [
+      "Child's Birth Certificate",
+      "Aadhaar Card of child and parents",
+      "Income Certificate / BPL Card (for EWS)",
+      "Caste Certificate (if applicable)",
+      "Address Proof"
+    ],
+    "applicationProcess": [
+      "Applications for the 25% private school quota are generally managed online via the respective State Education Department's RTE portal.",
+      "Register online, select preferred nearby private schools, and submit the application.",
+      "Admissions are granted via a computerized lottery system."
+    ],
+    "sourceInformation": {
+      "ministry": "Ministry of Education",
+      "officialWebsite": "https://dsel.education.gov.in/rte",
+      "lastUpdated": "2024-01-10"
+    }
+  },
+  {
+    "schemeId": "EDU_002",
+    "schemeName": "PM POSHAN (formerly Mid-Day Meal Scheme)",
+    "category": "education",
+    "description": "PM POSHAN is a centrally sponsored scheme providing hot cooked meals to children in government and government-aided schools to improve nutritional status and encourage school attendance.",
+    "eligibilityCriteria": [
+      "All children studying in Classes 1 to 8 in Government, Government-aided schools, Special Training Centres, and Madrasas/Maqtabs supported under Samagra Shiksha."
+    ],
+    "benefits": [
+      "One hot cooked nutritional meal per school day.",
+      "Minimum 450 calories and 12g of protein for primary (Classes 1-5); 700 calories and 20g of protein for upper primary (Classes 6-8).",
+      "Health check-ups and supplementary nutrition if required."
+    ],
+    "requiredDocuments": [
+      "No specific documents required. Enrollment in an eligible school is the only criteria."
+    ],
+    "applicationProcess": [
+      "No application is needed. The meal is provided automatically to all attending children on working school days."
+    ],
+    "sourceInformation": {
+      "ministry": "Ministry of Education",
+      "officialWebsite": "https://pmposhan.education.gov.in/",
+      "lastUpdated": "2023-12-01"
+    }
+  },
+  {
+    "schemeId": "EDU_003",
+    "schemeName": "National Means-cum-Merit Scholarship (NMMS)",
+    "category": "education",
+    "description": "The NMMS scheme awards scholarships to meritorious students of economically weaker sections to arrest their drop-out at class VIII and encourage them to continue their education at secondary stage.",
+    "eligibilityCriteria": [
+      "Students studying in Class 8 in State Government, Government-aided, and local body schools.",
+      "Must have secured at least 55% marks or equivalent grade in Class 7 (relaxable by 5% for SC/ST).",
+      "Parental income from all sources should not exceed ₹3,50,000 per annum."
+    ],
+    "benefits": [
+      "Scholarship of ₹12,000 per annum (₹1,000 per month) for classes 9 to 12.",
+      "Paid directly into the bank accounts of selected students through DBT."
+    ],
+    "requiredDocuments": [
+      "Income Certificate",
+      "Caste Certificate (if applicable)",
+      "Class 7 mark sheet",
+      "Aadhaar Card",
+      "Bank Passbook"
+    ],
+    "applicationProcess": [
+      "Students must pass the State Level selection test (Mental Ability Test and Scholastic Aptitude Test).",
+      "Selected students apply online on the National Scholarship Portal (NSP).",
+      "Applications are verified by the school and state nodal officer."
+    ],
+    "sourceInformation": {
+      "ministry": "Ministry of Education",
+      "officialWebsite": "https://scholarships.gov.in/",
+      "lastUpdated": "2023-11-15"
+    }
+  },
+  {
+    "schemeId": "EDU_004",
+    "schemeName": "AICTE Pragati Scholarship Scheme for Girls",
+    "category": "education",
+    "description": "Pragati is a scheme implemented by AICTE aimed at providing assistance for advancement of girls pursuing technical education. Education is one of the most important means of empowering women with the knowledge, skill and self-confidence necessary to participate fully in the development process.",
+    "eligibilityCriteria": [
+      "Girl students admitted to first year of Degree/Diploma level course OR second year of Degree/Diploma level course through lateral entry in any AICTE approved institution.",
+      "Maximum two girl children per family are eligible.",
+      "Family income from all sources should not exceed ₹8 lakh per annum."
+    ],
+    "benefits": [
+      "Scholarship of ₹50,000 per annum for every year of study.",
+      "Can be used for college fee, purchase of computer, stationeries, books, equipment, software, etc."
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card",
+      "Income Certificate issued by competent authority",
+      "Admission letter issued by Directorate of Technical Education",
+      "Certificate issued by Director/Principal/Head of the Institute",
+      "Bank Account details"
+    ],
+    "applicationProcess": [
+      "Eligible candidates apply online via the National Scholarship Portal (NSP).",
+      "The host institution verifies the application online.",
+      "Final selection is based on merit of qualifying examination."
+    ],
+    "sourceInformation": {
+      "ministry": "All India Council for Technical Education (AICTE)",
+      "officialWebsite": "https://www.aicte-india.org/schemes/students-development-schemes/Pragati",
+      "lastUpdated": "2024-02-28"
+    }
+  },
+  {
+    "schemeId": "EDU_005",
+    "schemeName": "PM e-VIDYA",
+    "category": "education",
+    "description": "PM e-VIDYA is a comprehensive initiative which unifies all efforts related to digital/online/on-air education to enable multi-mode access to education for millions of students across the country.",
+    "eligibilityCriteria": [
+      "All students from class 1 to 12 across India.",
+      "Particularly beneficial for students in remote areas without internet access through DTH channels."
+    ],
+    "benefits": [
+      "Access to DIKSHA (one nation, one digital platform) for e-content and QR coded energized textbooks.",
+      "One earmarked TV channel per class from 1 to 12 (Swayam Prabha DTH channels).",
+      "Extensive use of Radio, Community radio, and Podcasts (Shiksha Vani).",
+      "Special e-content for visually and hearing impaired students."
+    ],
+    "requiredDocuments": [
+      "No documents required for access."
+    ],
+    "applicationProcess": [
+      "Download the DIKSHA app on a smartphone, or tune in to the Swayam Prabha DTH channels on television, or access the ePathshala web portal."
+    ],
+    "sourceInformation": {
+      "ministry": "Ministry of Education",
+      "officialWebsite": "https://diksha.gov.in/",
+      "lastUpdated": "2023-09-10"
+    }
+  },
+  {
+    "schemeId": "EDU_006",
+    "schemeName": "Sukanya Samriddhi Yojana (SSY)",
+    "category": "education",
+    "description": "Launched under the 'Beti Bachao Beti Padhao' campaign, SSY is a government-backed savings scheme targeted at the parents of girl children, encouraging them to build a fund for the future education and marriage expenses of their female child.",
+    "eligibilityCriteria": [
+      "Parents or legal guardians of a girl child.",
+      "The account must be opened before the girl child attains the age of 10 years.",
+      "Only one account per girl child, and maximum two accounts for two girl children in a family."
+    ],
+    "benefits": [
+      "High interest rate (subject to quarterly revision, generally around 8.0% - 8.2%).",
+      "Tax deduction benefits under Section 80C up to ₹1.5 lakh annually.",
+      "Tax-free interest generation and tax-free maturity amount.",
+      "Partial withdrawal of 50% allowed for the girl's higher education after she turns 18 or passes 10th standard."
+    ],
+    "requiredDocuments": [
+      "Birth Certificate of the girl child",
+      "Identity Proof of the parent/guardian (Aadhaar, PAN, Passport)",
+      "Address Proof of the parent/guardian"
+    ],
+    "applicationProcess": [
+      "Download the SSY account opening form (Form-1).",
+      "Fill the form and submit it along with documents and initial deposit (minimum ₹250) at any participating Bank or Post Office."
+    ],
+    "sourceInformation": {
+      "ministry": "Ministry of Finance",
+      "officialWebsite": "https://www.indiapost.gov.in/Financial/Pages/Content/Post-Office-Saving-Schemes.aspx",
+      "lastUpdated": "2024-03-15"
+    }
+  }
+]

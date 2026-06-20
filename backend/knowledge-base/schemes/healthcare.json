@@ -1,0 +1,186 @@
+[
+  {
+    "schemeId": "HLTH_001",
+    "schemeName": "Ayushman Bharat - Pradhan Mantri Jan Arogya Yojana (AB-PMJAY)",
+    "category": "healthcare",
+    "description": "AB-PMJAY is the world's largest government-funded healthcare program, providing free health insurance coverage to over 50 crore poor and vulnerable citizens for secondary and tertiary care hospitalization.",
+    "eligibilityCriteria": [
+      "Families identified based on the deprivation and occupational criteria of the Socio-Economic Caste Census (SECC) 2011.",
+      "Includes households without shelter, destitute, manual scavenger families, and primitive tribal groups.",
+      "No restriction on family size, age, or gender."
+    ],
+    "benefits": [
+      "Health cover of up to ₹5,00,000 per family per year.",
+      "Cashless and paperless access to services at any empanelled public or private hospital across India.",
+      "Covers 3 days of pre-hospitalization and 15 days of post-hospitalization expenses, including diagnostics and medicines."
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card",
+      "Ration Card or other family ID",
+      "PMJAY e-Card (generated after verification)"
+    ],
+    "applicationProcess": [
+      "Check eligibility online at mera.pmjay.gov.in using mobile number or ration card.",
+      "Visit an empanelled hospital or Common Service Centre (CSC) with Aadhaar and Ration Card.",
+      "Complete the e-KYC process to generate the Ayushman Card.",
+      "Show the card at any empanelled hospital for cashless treatment."
+    ],
+    "sourceInformation": {
+      "ministry": "Ministry of Health and Family Welfare",
+      "officialWebsite": "https://pmjay.gov.in/",
+      "lastUpdated": "2024-02-20"
+    }
+  },
+  {
+    "schemeId": "HLTH_002",
+    "schemeName": "Pradhan Mantri Bhartiya Janaushadhi Pariyojana (PMBJP)",
+    "category": "healthcare",
+    "description": "PMBJP aims to make quality generic medicines available at affordable prices to all citizens through dedicated outlets known as Pradhan Mantri Bhartiya Janaushadhi Kendras (PMBJK).",
+    "eligibilityCriteria": [
+      "The scheme benefits are available to all citizens of India, regardless of income or category.",
+      "To open a PMBJK, applicants must be NGOs, institutions, co-operative societies, or individuals with B.Pharma/D.Pharma degrees."
+    ],
+    "benefits": [
+      "Generic medicines available at 50% to 90% lesser prices compared to branded medicines.",
+      "Ensures quality as all drugs are procured from WHO-GMP certified suppliers and tested at NABL accredited labs.",
+      "Available across thousands of dedicated kendras nationwide."
+    ],
+    "requiredDocuments": [
+      "Valid doctor's prescription (for buying prescription drugs).",
+      "No documents required for buying over-the-counter (OTC) medicines."
+    ],
+    "applicationProcess": [
+      "Citizens simply need to visit the nearest PMBJK with a doctor's prescription to purchase affordable medicines.",
+      "Use the 'Janaushadhi Sugam' mobile app to locate the nearest kendra and search for generic medicine prices."
+    ],
+    "sourceInformation": {
+      "ministry": "Ministry of Chemicals and Fertilizers",
+      "officialWebsite": "http://janaushadhi.gov.in/",
+      "lastUpdated": "2023-11-10"
+    }
+  },
+  {
+    "schemeId": "HLTH_003",
+    "schemeName": "Pradhan Mantri Matru Vandana Yojana (PMMVY)",
+    "category": "healthcare",
+    "description": "PMMVY is a maternity benefit program providing conditional cash transfer to pregnant women and lactating mothers for the first living child of the family to help them with enhanced nutritional needs and partial wage loss compensation.",
+    "eligibilityCriteria": [
+      "Pregnant Women and Lactating Mothers (PW&LM) who have their pregnancy registered on or after 01.01.2017.",
+      "For the first living child of the family.",
+      "Excludes those who are in regular employment with the Central/State Government or PSUs."
+    ],
+    "benefits": [
+      "Cash incentive of ₹5,000 payable in three installments.",
+      "First installment: ₹1,000 on early registration of pregnancy.",
+      "Second installment: ₹2,000 after six months of pregnancy receiving at least one antenatal check-up (ANC).",
+      "Third installment: ₹2,000 after child birth registration and completion of first cycle of vaccination."
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card of the beneficiary and her husband",
+      "Mother and Child Protection (MCP) Card",
+      "Bank account details (Aadhaar seeded)",
+      "Child's Birth Certificate (for 3rd installment)"
+    ],
+    "applicationProcess": [
+      "Register at the nearest Anganwadi Centre (AWC) or approved Health facility.",
+      "Submit the prescribed application forms (Form 1A, 1B, 1C) along with required documents for each installment.",
+      "Applications can also be submitted online via the PMMVY CAS portal by the health worker."
+    ],
+    "sourceInformation": {
+      "ministry": "Ministry of Women and Child Development",
+      "officialWebsite": "https://pmmvy.wcd.gov.in/",
+      "lastUpdated": "2024-01-05"
+    }
+  },
+  {
+    "schemeId": "HLTH_004",
+    "schemeName": "Mission Indradhanush",
+    "category": "healthcare",
+    "description": "A health mission to ensure full immunization with all available vaccines for children up to two years of age and pregnant women, focusing on unreached and partially vaccinated populations.",
+    "eligibilityCriteria": [
+      "Children up to 2 years of age who are unvaccinated or partially vaccinated.",
+      "Pregnant women needing tetanus or other essential maternal vaccinations.",
+      "All income groups; especially targeting high-risk areas and slums."
+    ],
+    "benefits": [
+      "Free vaccination against 12 Vaccine-Preventable Diseases (VPDs) including Diphtheria, Whooping cough, Tetanus, Polio, Tuberculosis, Measles, Hepatitis B, etc.",
+      "Prevents child mortality and ensures healthy development."
+    ],
+    "requiredDocuments": [
+      "Mother and Child Protection (MCP) Card",
+      "Aadhaar Card (optional, for record keeping)"
+    ],
+    "applicationProcess": [
+      "No formal application required.",
+      "Attend the nearest Anganwadi center, Primary Health Center (PHC), or designated immunization camp during the designated immunization days.",
+      "ASHA workers proactively identify and mobilize target children and women."
+    ],
+    "sourceInformation": {
+      "ministry": "Ministry of Health and Family Welfare",
+      "officialWebsite": "https://mohfw.gov.in/",
+      "lastUpdated": "2023-10-15"
+    }
+  },
+  {
+    "schemeId": "HLTH_005",
+    "schemeName": "Ayushman Bharat Digital Mission (ABDM) / ABHA ID",
+    "category": "healthcare",
+    "description": "ABDM aims to develop the backbone necessary to support the integrated digital health infrastructure of the country. Citizens can create an Ayushman Bharat Health Account (ABHA) ID to digitally store and share their medical records securely.",
+    "eligibilityCriteria": [
+      "Any citizen of India.",
+      "No age or income restrictions."
+    ],
+    "benefits": [
+      "A unique 14-digit ABHA ID.",
+      "Securely store digital health records (prescriptions, lab reports, discharge summaries) in one place.",
+      "Easy and secure sharing of medical records with doctors, hospitals, and insurance providers nationwide.",
+      "Reduces the need to carry physical medical files."
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card or Driving License",
+      "Mobile Number linked to Aadhaar"
+    ],
+    "applicationProcess": [
+      "Visit the official ABHA portal (abha.abdm.gov.in) or download the ABHA app.",
+      "Click on 'Create ABHA Number'.",
+      "Authenticate using Aadhaar OTP or Driving License.",
+      "Set up an ABHA address (similar to a UPI ID) and link health records."
+    ],
+    "sourceInformation": {
+      "ministry": "National Health Authority (NHA)",
+      "officialWebsite": "https://abha.abdm.gov.in/",
+      "lastUpdated": "2024-03-05"
+    }
+  },
+  {
+    "schemeId": "HLTH_006",
+    "schemeName": "Rashtriya Arogya Nidhi (RAN)",
+    "category": "healthcare",
+    "description": "RAN provides financial assistance to patients living below the poverty line (BPL) who are suffering from major life-threatening diseases related to heart, liver, kidney, and cancer, to receive medical treatment at any of the super specialty Government hospitals.",
+    "eligibilityCriteria": [
+      "Patient must belong to a Below Poverty Line (BPL) family.",
+      "Must be suffering from a life-threatening disease specified under the scheme.",
+      "Treatment must be taken in a Central/State Government hospital or institute."
+    ],
+    "benefits": [
+      "One-time financial assistance ranging from ₹50,000 to ₹15,00,000 depending on the cost of treatment.",
+      "The grant is released directly to the Medical Superintendent of the treating Government hospital."
+    ],
+    "requiredDocuments": [
+      "BPL Card / Income Certificate issued by Tehsildar/SDM",
+      "Medical estimate certificate from the treating Government hospital doctor",
+      "Aadhaar Card",
+      "Passport size photographs"
+    ],
+    "applicationProcess": [
+      "Obtain an estimate for the treatment cost from the treating doctor at the Government hospital.",
+      "Submit the application form along with the income certificate and medical estimate to the Medical Superintendent of the hospital.",
+      "For amounts up to ₹5 lakh, the hospital's revolving fund can disburse it. For higher amounts, it is sent to the Health Ministry for approval."
+    ],
+    "sourceInformation": {
+      "ministry": "Ministry of Health and Family Welfare",
+      "officialWebsite": "https://main.mohfw.gov.in/major-programmes/poor-patients-financial-support",
+      "lastUpdated": "2023-08-22"
+    }
+  }
+]

@@ -1,0 +1,190 @@
+[
+  {
+    "schemeId": "AGRI_001",
+    "schemeName": "Pradhan Mantri Kisan Samman Nidhi (PM-KISAN)",
+    "category": "agriculture",
+    "description": "PM-KISAN is a central sector scheme that provides income support to all landholding farmers' families in the country to supplement their financial needs for procuring various inputs related to agriculture and allied activities as well as domestic needs.",
+    "eligibilityCriteria": [
+      "Must be a landholding farmer's family (husband, wife, and minor children).",
+      "Cultivable land must be registered in the name of the farmer.",
+      "Institutional landholders, current/former constitutional post holders, current/former government employees, and income tax payers are NOT eligible."
+    ],
+    "benefits": [
+      "Financial benefit of ₹6,000 per year.",
+      "Payable in three equal installments of ₹2,000 every four months.",
+      "Amount is transferred directly to the bank accounts of beneficiaries."
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card",
+      "Citizenship certificate / Voter ID",
+      "Land ownership documents (Khasra Khatauni)",
+      "Bank account details (Passbook)"
+    ],
+    "applicationProcess": [
+      "Visit the official PM-KISAN portal (pmkisan.gov.in).",
+      "Click on 'New Farmer Registration' in the Farmers Corner.",
+      "Enter Aadhaar number and fill the registration form.",
+      "Submit the required documents online or visit the nearest Common Service Centre (CSC) for assistance."
+    ],
+    "sourceInformation": {
+      "ministry": "Ministry of Agriculture and Farmers Welfare",
+      "officialWebsite": "https://pmkisan.gov.in/",
+      "lastUpdated": "2024-01-15"
+    }
+  },
+  {
+    "schemeId": "AGRI_002",
+    "schemeName": "Pradhan Mantri Fasal Bima Yojana (PMFBY)",
+    "category": "agriculture",
+    "description": "PMFBY is a crop insurance scheme designed to provide financial support to farmers suffering crop loss/damage arising out of unforeseen events. It aims to stabilize the income of farmers to ensure their continuance in farming.",
+    "eligibilityCriteria": [
+      "All farmers growing notified crops in a notified area.",
+      "Includes sharecroppers and tenant farmers growing the notified crops.",
+      "Farmers must have an insurable interest in the insured crop."
+    ],
+    "benefits": [
+      "Comprehensive risk insurance to cover yield losses due to non-preventable risks (natural fire, lightning, storm, hail, cyclone, drought, pests, diseases).",
+      "Very low premium rates: 2% for Kharif crops, 1.5% for Rabi crops, and 5% for commercial/horticultural crops."
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card",
+      "Bank Passbook",
+      "Land Record (Khasra / Khatauni) or Tenant/Sharecropper agreement",
+      "Sowing Certificate issued by concerned village official"
+    ],
+    "applicationProcess": [
+      "Farmers can apply through banks, Common Service Centres (CSCs), or directly on the National Crop Insurance Portal.",
+      "Fill the application form and pay the premium amount before the cut-off date for the specific season."
+    ],
+    "sourceInformation": {
+      "ministry": "Ministry of Agriculture and Farmers Welfare",
+      "officialWebsite": "https://pmfby.gov.in/",
+      "lastUpdated": "2024-02-10"
+    }
+  },
+  {
+    "schemeId": "AGRI_003",
+    "schemeName": "Kisan Credit Card (KCC)",
+    "category": "agriculture",
+    "description": "The Kisan Credit Card scheme aims to provide adequate and timely credit support from the banking system under a single window with flexible and simplified procedure to the farmers for their cultivation and other needs.",
+    "eligibilityCriteria": [
+      "All farmers - individuals / joint borrowers who are owner cultivators.",
+      "Tenant farmers, oral lessees, and sharecroppers.",
+      "Self Help Groups (SHGs) or Joint Liability Groups (JLGs) of farmers."
+    ],
+    "benefits": [
+      "Credit facility for agricultural expenses, post-harvest expenses, and consumption requirements.",
+      "Interest subvention of 2% for prompt repayment, effectively bringing the interest rate down to 4% per annum for loans up to ₹3 lakh.",
+      "Comes with an ATM-enabled RuPay debit card."
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card or PAN Card",
+      "Passport size photographs",
+      "Land ownership records",
+      "Crop details to be grown"
+    ],
+    "applicationProcess": [
+      "Download the KCC application form from the PM-KISAN portal or visit the nearest bank branch.",
+      "Fill the form and submit it along with land documents and crop details to the bank.",
+      "The bank will issue the KCC after verification within 14 days."
+    ],
+    "sourceInformation": {
+      "ministry": "Ministry of Finance / Ministry of Agriculture",
+      "officialWebsite": "https://pmkisan.gov.in/",
+      "lastUpdated": "2023-11-20"
+    }
+  },
+  {
+    "schemeId": "AGRI_004",
+    "schemeName": "Paramparagat Krishi Vikas Yojana (PKVY)",
+    "category": "agriculture",
+    "description": "PKVY is a traditional farming improvement programme that promotes organic farming through the adoption of organic villages by cluster approach and Participatory Guarantee System (PGS) certification.",
+    "eligibilityCriteria": [
+      "Groups of farmers willing to take up organic farming.",
+      "A cluster of 50 or more farmers having 50 acres of land to take up organic farming in a continuous patch."
+    ],
+    "benefits": [
+      "Financial assistance of ₹50,000 per hectare for a 3-year period.",
+      "Funds are provided for organic inputs, certification, labeling, packaging, and transportation.",
+      "₹31,000 out of the ₹50,000 is given directly through DBT to farmers for buying organic inputs."
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card",
+      "Bank Account Details",
+      "Land Records",
+      "Declaration to practice organic farming"
+    ],
+    "applicationProcess": [
+      "Farmers must form a cluster and register with the local Agriculture Department.",
+      "The cluster is verified and registered under the Participatory Guarantee System (PGS).",
+      "Funds are disbursed by the State Government directly to the farmers' bank accounts."
+    ],
+    "sourceInformation": {
+      "ministry": "Ministry of Agriculture and Farmers Welfare",
+      "officialWebsite": "https://pgsindia-ncof.gov.in/",
+      "lastUpdated": "2023-09-05"
+    }
+  },
+  {
+    "schemeId": "AGRI_005",
+    "schemeName": "National Agriculture Market (e-NAM)",
+    "category": "agriculture",
+    "description": "e-NAM is a pan-India electronic trading portal which networks the existing APMC mandis to create a unified national market for agricultural commodities, ensuring better prices for farmers.",
+    "eligibilityCriteria": [
+      "Any farmer, FPO (Farmer Producer Organization), trader, or commission agent willing to sell or buy agricultural produce.",
+      "The user must be registered in the respective APMC mandi."
+    ],
+    "benefits": [
+      "Transparent online trading with better price discovery.",
+      "Access to a larger national market instead of being restricted to the local mandi.",
+      "Direct online payment to the farmer's bank account."
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card",
+      "Bank account details (Cancelled cheque/Passbook)",
+      "Mobile number for OTP and notifications"
+    ],
+    "applicationProcess": [
+      "Register on the e-NAM portal (enam.gov.in) or mobile app using mobile number.",
+      "Submit KYC details online or at the e-NAM cell in the nearest mandi.",
+      "Once approved by the APMC, farmers can bring their produce to the mandi, get it assayed, and trade online."
+    ],
+    "sourceInformation": {
+      "ministry": "Ministry of Agriculture and Farmers Welfare",
+      "officialWebsite": "https://enam.gov.in/",
+      "lastUpdated": "2024-03-01"
+    }
+  },
+  {
+    "schemeId": "AGRI_006",
+    "schemeName": "Pradhan Mantri Krishi Sinchayee Yojana (PMKSY)",
+    "category": "agriculture",
+    "description": "PMKSY aims to enhance physical access of water on farm and expand cultivable area under assured irrigation, improve on-farm water use efficiency, and introduce sustainable water conservation practices.",
+    "eligibilityCriteria": [
+      "All farmers regardless of the size of their landholding.",
+      "Priority is given to small and marginal farmers, and farmers in drought-prone areas.",
+      "Farmers must form water user associations in some sub-components."
+    ],
+    "benefits": [
+      "Subsidies for micro-irrigation systems (drip and sprinkler) - up to 55% for small/marginal farmers and 45% for other farmers.",
+      "Support for creating water harvesting structures and farm ponds.",
+      "Improved water use efficiency and increased crop yield."
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card",
+      "Land Ownership Documents",
+      "Bank Account Details",
+      "Quotation/Invoice for micro-irrigation equipment from an approved vendor"
+    ],
+    "applicationProcess": [
+      "Apply through the State Agriculture/Horticulture Department portal.",
+      "Submit land details and the quotation for the irrigation system.",
+      "After verification by a field officer, the subsidy is released either to the vendor or the farmer's account."
+    ],
+    "sourceInformation": {
+      "ministry": "Ministry of Agriculture and Farmers Welfare",
+      "officialWebsite": "https://pmksy.gov.in/",
+      "lastUpdated": "2023-12-12"
+    }
+  }
+]
