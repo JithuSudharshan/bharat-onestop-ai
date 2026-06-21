@@ -19,29 +19,75 @@ const extractDocumentData = async (filePath, mimeType) => {
   const prompt = `
 [TASK]
 You are an expert Document Intelligence Agent for the Indian Government.
-Analyze the uploaded document (which may be an Income Certificate, Marksheet, or Identity Document like Aadhaar/PAN).
-Extract the following citizen details accurately if they are present in the document. 
-If a field is not present or cannot be determined, return null for that field.
+Analyze the uploaded document. Extract highly structured citizen intelligence data.
+If a field is not present or cannot be determined securely, return null for that field.
 
-[REQUIRED EXTRACTION FIELDS]
-- "name": Full name of the citizen
-- "age": Age (number) or calculate age based on Date of Birth if present
-- "income": Annual income (number) if it's an income certificate
-- "location": State or District mentioned in the address
-- "education": Education level (e.g., '10th Pass', 'secondary', 'graduate') if it's a marksheet
-- "documentType": Classify the document (e.g., "Aadhaar Card", "Income Certificate", "10th Marksheet")
-- "importantDates": Any notable dates (e.g., Date of Issue, Date of Birth, Valid Until)
-
-[RESPONSE FORMAT]
-You MUST respond ONLY with a valid JSON object matching this structure:
+[REQUIRED RESPONSE FORMAT]
+You MUST respond ONLY with a valid JSON object matching exactly this structure:
 {
-  "name": "String or null",
-  "age": 0,
-  "income": 0,
-  "location": "String or null",
-  "education": "String or null",
-  "documentType": "String or null",
-  "importantDates": ["Date 1", "Date 2"]
+ "documentType": "String or null",
+ "identity": {
+    "documentNumber": "String or null",
+    "documentCategory": "String or null",
+    "issuingAuthority": "String or null",
+    "verificationStatus": "String (e.g., 'Verified', 'Unverified')"
+ },
+ "personal": {
+    "name": "String or null",
+    "dob": "String (YYYY-MM-DD) or null",
+    "age": "Number or null",
+    "gender": "String or null"
+ },
+ "address": {
+    "house": "String or null",
+    "street": "String or null",
+    "village": "String or null",
+    "district": "String or null",
+    "state": "String or null",
+    "pincode": "String or null"
+ },
+ "income": {
+    "annualIncome": "Number or null",
+    "incomeCategory": "String or null",
+    "certificateDate": "String or null",
+    "validity": "String or null",
+    "issuingAuthority": "String or null"
+ },
+ "education": {
+    "qualification": "String or null",
+    "institution": "String or null",
+    "stream": "String or null",
+    "passingYear": "Number or null",
+    "marks": "Number or null",
+    "percentage": "Number or null"
+ },
+ "employment": {
+    "occupation": "String or null",
+    "employmentType": "String or null",
+    "organization": "String or null"
+ },
+ "family": {
+    "familyMembers": "Number or null",
+    "dependents": "Number or null",
+    "familyIncome": "Number or null"
+ },
+ "eligibilitySignals": {
+    "student": "Boolean",
+    "farmer": "Boolean",
+    "seniorCitizen": "Boolean",
+    "lowIncome": "Boolean",
+    "disability": "Boolean"
+ },
+ "importantDates": ["Date 1", "Date 2"],
+ "missingInformation": ["Suggestion 1", "Suggestion 2"],
+ "confidence": {
+    "overall": "Number (0-100)",
+    "fields": {
+       "personal": "Number (0-100)",
+       "income": "Number (0-100)",
+       "education": "Number (0-100)"
+    }
+ }
 }
 `;
 

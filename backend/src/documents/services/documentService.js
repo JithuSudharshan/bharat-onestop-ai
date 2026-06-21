@@ -28,21 +28,45 @@ const processUploadedDocument = async (userId, file) => {
     docRecord.extractedData = extractedData;
     await docRecord.save();
 
-    // 5. Opportunistically update Citizen Profile
-    try {
-      const existingProfile = await profileService.getProfile(userId);
-      const updates = {};
-      
-      if (extractedData.name && !existingProfile.name) updates.name = extractedData.name;
-      if (extractedData.age && !existingProfile.age) updates.age = extractedData.age;
-      
-      if (extractedData.income) {
-        updates.income = existingProfile.income || {};
-        updates.income.annualIncome = extractedData.income;
-      }
-      
-      // Update logic can be made more sophisticated based on document confidence
-      if (Object.keys(updates).length > 0) {
+      // 5. Opportunistically update Citizen Profile
+      try {
+        const existingProfile = await profileService.getProfile(userId);
+        const updates = {};
+        
+        // Personal
+        if (extractedData.personal?.name && !existingProfile.name) updates.name = extractedData.personal.name;
+        if (extractedData.personal?.age && !existingProfile.age) updates.age = extractedData.personal.age;
+        
+        // Address
+        if (extractedData.address?.state && !existingProfile.state) updates.state = extractedData.address.state;
+        if (extractedData.address?.district && !existingProfile.district) updates.district = extractedData.address.district;
+
+        // Income
+        if (extractedData.income?.annualIncome && (!existingProfile.income || !existingProfile.income.annualIncome)) {
+          updates.income = existingProfile.income || {};
+          updates.income.annualIncome = extractedData.income.annualIncome;
+        }
+
+        // Employment
+        if (extractedData.employment?.occupation && !existingProfile.occupation) {
+          updates.occupation = extractedData.employment.occupation;
+        }
+
+        // Education (We rely on validation, if it fails, the update will throw but we catch it)
+        // For production, a mapping from raw text to the enum would be needed here.
+        if (extractedData.education?.qualification && !existingProfile.education) {
+          // Attempt basic mapping
+          const qual = extractedData.education.qualification.toLowerCase();
+          if (qual.includes('graduate') && !qual.includes('post')) updates.education = 'graduate';
+          else if (qual.includes('post graduate')) updates.education = 'post_graduate';
+          else if (qual.includes('secondary')) updates.education = 'higher_secondary';
+          else if (qual.includes('diploma')) updates.education = 'diploma';
+          else if (qual.includes('doctorate')) updates.education = 'doctorate';
+          else updates.education = 'other';
+        }
+        
+        // Update logic can be made more sophisticated based on document confidence
+        if (Object.keys(updates).length > 0 && extractedData.confidence?.overall >= 70) {
         await profileService.updateProfile(userId, updates);
       }
     } catch (profileErr) {
