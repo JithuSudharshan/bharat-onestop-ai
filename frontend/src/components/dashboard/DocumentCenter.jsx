@@ -51,7 +51,7 @@ export const DocumentCenter = () => {
         {loading ? (
           <motion.div key="loading" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <div className="border border-indigo-100 bg-indigo-50/50 rounded-2xl py-12">
-              <ProcessingAnimation message="Analyzing Document via Gemini Vision..." />
+              <ProcessingAnimation message="Analyzing Document via Bharat OneStop AI..." />
             </div>
           </motion.div>
         ) : result ? (

@@ -14,7 +14,7 @@ const features = [
   {
     icon: FileSearch,
     title: 'Document Extraction',
-    description: 'Upload Aadhaar, PAN, or Marksheets. Gemini Vision extracts metadata automatically.',
+    description: 'Upload Aadhaar, PAN, or Marksheets. Bharat OneStop AI extracts metadata automatically.',
     colSpan: 'md:col-span-1'
   },
   {

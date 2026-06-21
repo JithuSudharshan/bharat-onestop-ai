@@ -13,8 +13,8 @@ const Schemes = () => {
     <div className="max-w-5xl mx-auto space-y-8">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 tracking-tight">AI Recommended Schemes</h1>
-          <p className="text-gray-500 mt-2 text-lg">Personalized benefits sourced and verified by Gemini.</p>
+          <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Bharat OneStop Recommended Schemes</h1>
+          <p className="text-gray-500 mt-2 text-lg">Personalized benefits curated and verified by Bharat OneStop AI.</p>
         </div>
         <div className="hidden md:flex items-center gap-2 bg-indigo-50 text-indigo-700 px-4 py-2 rounded-xl border border-indigo-100 font-medium">
           <Sparkles size={18} /> RAG Pipeline Active

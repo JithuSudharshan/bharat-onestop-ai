@@ -12,7 +12,7 @@ export const AIInsightsPanel = ({ profile }) => {
         </div>
         <div>
           <h3 className="text-lg font-bold text-gray-900 leading-tight">AI Citizen Insights</h3>
-          <p className="text-sm text-indigo-600 font-medium">Gemini Intelligence Layer</p>
+          <p className="text-sm text-indigo-600 font-medium">Bharat OneStop Intelligence Layer</p>
         </div>
       </div>
 

@@ -47,7 +47,7 @@ export const Hero = () => {
             <div className="flex items-center gap-4 opacity-70 grayscale hover:grayscale-0 transition-all">
               <span className="font-bold text-gray-300">Google Cloud</span>
               <span className="w-1 h-1 bg-gray-500 rounded-full"></span>
-              <span className="font-bold text-gray-300">Gemini AI</span>
+              <span className="font-bold text-gray-300">Bharat OneStop AI</span>
             </div>
           </div>
         </motion.div>

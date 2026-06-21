@@ -167,7 +167,7 @@ export const VoiceListeningModal = ({ isOpen, onClose, onSend }) => {
               <div className="absolute inset-0 flex items-center justify-center bg-gray-900/80 backdrop-blur-sm rounded-2xl z-10">
                 <div className="flex items-center gap-3 text-blue-400">
                   <Loader2 size={20} className="animate-spin" />
-                  <span className="font-medium">Analyzing Audio via Gemini...</span>
+                  <span className="font-medium">Analyzing Audio via Bharat OneStop AI...</span>
                 </div>
               </div>
             )}

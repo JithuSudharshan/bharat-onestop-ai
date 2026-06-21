@@ -72,7 +72,7 @@ const Journey = () => {
           <div className="absolute inset-0 bg-blue-500 blur-[50px] opacity-20 rounded-full animate-pulse"></div>
           <Sparkles size={64} className="text-blue-400 animate-bounce relative z-10" />
         </div>
-        <p className="mt-8 text-[#0B132B] font-extrabold text-xl">Gemini is analyzing your profile...</p>
+        <p className="mt-8 text-[#0B132B] font-extrabold text-xl">Bharat OneStop AI is analyzing your profile...</p>
         <p className="mt-2 text-gray-500 font-medium text-sm">Synthesizing documents, eligible schemes, and life stage.</p>
       </div>
     );
