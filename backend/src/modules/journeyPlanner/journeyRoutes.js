@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const journeyController = require('./journeyController');
-const { verifyToken } = require('../../middleware/verifyToken');
+const verifyToken = require('../../middleware/verifyToken');
 
 // All journey routes should be protected
 router.use(verifyToken);
