@@ -240,7 +240,7 @@ gcloud run deploy bharat-onestop --image gcr.io/your-project-id/bharat-onestop -
 *Senior Full-Stack Software Engineer*
 
 - 💼 **LinkedIn**: [https://www.linkedin.com/in/jithu-sudharshan-a6168a252/](#)
-- 📧 **Email**: [your.email@example.com](mailto:jithu.codes@gmail.com
+- 📧 **Email**: [jithu.codes@gmail.com](mailto:jithu.codes@gmail.com
 )
 
 ---
