@@ -62,7 +62,7 @@ const generateContent = async (prompt) => {
 
 const embedContent = async (text) => {
   if (!genAI) initializeGemini();
-  const embeddingModel = genAI.getGenerativeModel({ model: 'text-embedding-004' });
+  const embeddingModel = genAI.getGenerativeModel({ model: 'gemini-embedding-2' });
   const result = await embeddingModel.embedContent(text);
   return result.embedding.values;
 };
