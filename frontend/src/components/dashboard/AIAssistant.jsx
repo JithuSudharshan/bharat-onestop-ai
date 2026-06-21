@@ -1,8 +1,55 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { AnimatedCard } from '../ui/AnimatedCard';
 import { sendChatMessage } from '../../api/assistantApi';
-import { Send, Bot, User, Sparkles, Mic, Loader2 } from 'lucide-react';
+import { Send, Bot, User, Sparkles, Mic, Loader2, Volume2, StopCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { VoiceListeningModal } from '../voice/VoiceListeningModal';
+
+
+// Helper component to parse and cleanly render basic markdown from AI
+const FormattedMessage = ({ text, isUser }) => {
+  if (isUser) return <>{text}</>;
+
+  const lines = text.split('\n');
+  
+  const formatBold = (str) => {
+    const parts = str.split(/(\*\*.*?\*\*)/g);
+    return parts.map((part, index) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return <strong key={index} className="font-semibold text-indigo-900">{part.slice(2, -2)}</strong>;
+      }
+      return part;
+    });
+  };
+
+  return (
+    <div className="space-y-2.5">
+      {lines.map((line, i) => {
+        const trimmed = line.trim();
+        if (!trimmed) return null;
+        
+        // Headings
+        if (trimmed.startsWith('### ')) return <h3 key={i} className="text-base font-bold mt-4 text-gray-900">{trimmed.replace('### ', '')}</h3>;
+        if (trimmed.startsWith('## ')) return <h2 key={i} className="text-lg font-bold mt-4 text-gray-900">{trimmed.replace('## ', '')}</h2>;
+        if (trimmed.startsWith('# ')) return <h1 key={i} className="text-xl font-bold mt-5 text-gray-900">{trimmed.replace('# ', '')}</h1>;
+        
+        // Lists
+        if (trimmed.startsWith('* ') || trimmed.startsWith('- ')) {
+          return (
+            <div key={i} className="flex gap-2.5 ml-1">
+              <span className="text-blue-500 mt-1.5 text-[10px] opacity-70">●</span>
+              <span className="text-gray-700 leading-relaxed">{formatBold(trimmed.substring(2))}</span>
+            </div>
+          );
+        }
+
+        // Paragraphs
+        return <p key={i} className="text-gray-700 leading-relaxed">{formatBold(trimmed)}</p>;
+      })}
+    </div>
+  );
+};
+
 
 export const AIAssistant = () => {
   const [messages, setMessages] = useState([
@@ -10,10 +57,33 @@ export const AIAssistant = () => {
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const [isVoiceModalOpen, setIsVoiceModalOpen] = useState(false);
+  const [playingId, setPlayingId] = useState(null);
   const endRef = useRef(null);
 
   const scrollToBottom = () => endRef.current?.scrollIntoView({ behavior: "smooth" });
-  useEffect(() => { scrollToBottom() }, [messages, loading]);
+  
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages, loading]);
+
+  const handleVoiceSend = (transcript) => {
+    handleSend(transcript);
+  };
+
+  const toggleTTS = (text, index) => {
+    if (playingId === index) {
+      window.speechSynthesis.cancel();
+      setPlayingId(null);
+    } else {
+      window.speechSynthesis.cancel();
+      const cleanText = text.replace(/[*#_]/g, '');
+      const utterance = new SpeechSynthesisUtterance(cleanText);
+      utterance.onend = () => setPlayingId(null);
+      setPlayingId(index);
+      window.speechSynthesis.speak(utterance);
+    }
+  };
 
   const handleSend = async (text = input) => {
     if (!text.trim()) return;
@@ -65,12 +135,23 @@ export const AIAssistant = () => {
               <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 shadow-sm ${msg.role === 'user' ? 'bg-indigo-600 text-white' : 'bg-white border border-gray-200 text-blue-600'}`}>
                 {msg.role === 'user' ? <User size={16} /> : <Bot size={16} />}
               </div>
-              <div className={`p-4 rounded-2xl text-[15px] leading-relaxed shadow-sm ${
+              <div className={`p-4 rounded-2xl text-[15px] shadow-sm overflow-hidden relative group ${
                 msg.role === 'user' 
                   ? 'bg-indigo-600 text-white rounded-tr-sm' 
                   : 'bg-white border border-gray-100 text-gray-800 rounded-tl-sm'
               }`}>
-                {msg.text}
+                <FormattedMessage text={msg.text} isUser={msg.role === 'user'} />
+                
+                {/* TTS Button for AI responses */}
+                {msg.role === 'model' && (
+                  <button 
+                    onClick={() => toggleTTS(msg.text, i)}
+                    className="absolute top-3 right-3 p-1.5 bg-gray-50 hover:bg-indigo-50 text-gray-400 hover:text-indigo-600 rounded-lg opacity-0 group-hover:opacity-100 transition-all border border-gray-100"
+                    title={playingId === i ? "Stop playback" : "Read aloud"}
+                  >
+                    {playingId === i ? <StopCircle size={16} /> : <Volume2 size={16} />}
+                  </button>
+                )}
               </div>
             </motion.div>
           ))}
@@ -106,7 +187,11 @@ export const AIAssistant = () => {
         )}
         
         <div className="flex items-center gap-2">
-          <button className="p-3 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-colors">
+          <button 
+            onClick={() => setIsVoiceModalOpen(true)}
+            className="p-3 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all"
+            title="Start Voice Assistant"
+          >
             <Mic size={20} />
           </button>
           <input
@@ -115,7 +200,7 @@ export const AIAssistant = () => {
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && handleSend()}
             placeholder="Ask about schemes, eligibility, or forms..."
-            className="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all text-sm"
+            className="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all text-sm text-gray-900 placeholder:text-gray-400"
           />
           <button 
             onClick={() => handleSend()}
@@ -126,6 +211,11 @@ export const AIAssistant = () => {
           </button>
         </div>
       </div>
+      <VoiceListeningModal 
+        isOpen={isVoiceModalOpen} 
+        onClose={() => setIsVoiceModalOpen(false)} 
+        onSend={handleVoiceSend} 
+      />
     </AnimatedCard>
   );
 };

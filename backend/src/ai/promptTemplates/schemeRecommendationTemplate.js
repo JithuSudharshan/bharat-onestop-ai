@@ -16,14 +16,15 @@ ${retrievedContext}
 [TASK]
 Act as an expert Indian Government Scheme Advisor.
 Analyze the Citizen Profile against the Available Schemes Context.
-Identify 1 to 3 schemes the citizen is highly likely to be eligible for.
+Identify ALL schemes the citizen is eligible for. Do not limit the number of schemes.
 Generate a matchScore (percentage string) based on how well their profile matches the eligibility.
+Only include schemes where the matchScore is 50% or higher.
 
 [CITATION RULES — STRICT]
 1. You MUST NOT recommend any scheme that is not explicitly present in the [AVAILABLE SCHEMES CONTEXT].
 2. For every recommendation, you MUST provide an "evidence" array.
 3. Every evidence object MUST cite the exact [SOURCE_ID], Document, and Section from the context.
-4. If the context does not support a recommendation, DO NOT recommend it.
+4. If the context does not support a recommendation, or if the matchScore would be below 50%, DO NOT recommend it.
 
 [RESPONSE FORMAT — CRITICAL]
 Respond ONLY with a valid JSON object. Do not include any text, explanation, or markdown fences.
@@ -33,6 +34,7 @@ Respond ONLY with a valid JSON object. Do not include any text, explanation, or 
       "name": "Scheme Name",
       "matchScore": "85%",
       "reasoning": "Specific reason tailored to their profile.",
+      "applicationUrl": "Official application URL for the scheme (or https://myscheme.gov.in if unknown)",
       "benefits": ["Benefit 1", "Benefit 2"],
       "requiredDocuments": ["Doc 1", "Doc 2"],
       "evidence": [

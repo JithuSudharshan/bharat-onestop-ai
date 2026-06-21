@@ -74,9 +74,14 @@ export const SchemeRecommendation = ({ scheme, index }) => {
         <div className="text-xs text-gray-500">
           Last updated: Today
         </div>
-        <button className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-medium transition-colors shadow-sm shadow-blue-600/20">
+        <a 
+          href={scheme.applicationUrl || `https://myscheme.gov.in/search?q=${encodeURIComponent(scheme.name)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-medium transition-colors shadow-sm shadow-blue-600/20"
+        >
           Start Application <ArrowRight size={16} />
-        </button>
+        </a>
       </div>
     </AnimatedCard>
   );

@@ -9,7 +9,7 @@ const recommend = async (profile) => {
   
   // 2. Embed and retrieve chunks
   const queryEmbedding = await embedContent(searchQuery);
-  const chunks = await getEvidenceContext(queryEmbedding, 8); // Get top 8 chunks
+  const chunks = await getEvidenceContext(queryEmbedding, 20); // Increased to top 20 chunks to evaluate all possible schemes
   
   if (chunks.length === 0) {
     return { recommendedSchemes: [] };

@@ -1,9 +1,12 @@
 const express = require('express');
 const { body } = require('express-validator');
 const rateLimit = require('express-rate-limit');
-const { chat, analyzeProfile, recommendSchemes } = require('../controllers/aiController');
+const multer = require('multer');
+const { chat, analyzeProfile, recommendSchemes, processAudio } = require('../controllers/aiController');
 const validate = require('../middleware/validate');
 const verifyToken = require('../middleware/verifyToken');
+
+const upload = multer({ storage: multer.memoryStorage() });
 
 const router = express.Router();
 
@@ -33,5 +36,6 @@ const chatValidator = [
 router.post('/chat', chatValidator, validate, chat);
 router.post('/analyze', analyzeProfile);
 router.post('/recommend', recommendSchemes);
+router.post('/speech-to-text', upload.single('audio'), processAudio);
 
 module.exports = router;
