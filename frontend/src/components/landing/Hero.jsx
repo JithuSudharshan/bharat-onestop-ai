@@ -65,7 +65,7 @@ export const Hero = () => {
           <motion.div 
             animate={{ y: [-10, 10, -10] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-1/4 -left-12 px-6 py-4 bg-ai-glass backdrop-blur-xl border border-ai-glassBorder rounded-2xl shadow-glass flex items-center gap-4"
+            className="absolute z-20 top-1/4 -left-12 px-6 py-4 bg-ai-glass backdrop-blur-xl border border-ai-glassBorder rounded-2xl shadow-glass flex items-center gap-4"
           >
             <div className="w-10 h-10 rounded-full bg-ai-success/20 flex items-center justify-center text-ai-success text-lg">✓</div>
             <div>
@@ -77,7 +77,7 @@ export const Hero = () => {
           <motion.div 
             animate={{ y: [10, -10, 10] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute bottom-1/4 right-0 px-6 py-4 bg-ai-glass backdrop-blur-xl border border-ai-glassBorder rounded-2xl shadow-glass flex flex-col gap-2"
+            className="absolute z-20 bottom-1/4 right-0 px-6 py-4 bg-ai-glass backdrop-blur-xl border border-ai-glassBorder rounded-2xl shadow-glass flex flex-col gap-2"
           >
             <p className="text-gray-300 text-xs font-medium uppercase tracking-wider">AI Reasoning</p>
             <p className="text-white font-semibold text-sm max-w-[180px]">Citizen matches exactly 4 criteria for PM KISAN.</p>

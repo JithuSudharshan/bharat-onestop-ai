@@ -38,6 +38,8 @@ Rather than forcing citizens to search through hundreds of isolated state and ce
 ### 🏢 Core Technical Features
 - **Retrieval-Augmented Generation (RAG) Pipeline**: Ingests, semantically chunks, and embeds JSON government scheme data into a Vector Database for highly accurate search retrieval.
 - **Agentic AI Architecture**: Modular agents (`SchemeRecommendationAgent`, `JourneyPlannerAgent`, `ApplicationAssistantAgent`) autonomously synthesize prompts and context.
+- **Bharat Sahayath AI Assistant**: A dedicated conversational AI engine trained specifically on Indian governance policies to guide users natively.
+- **Multilingual Speech-to-Text Engine**: Breaks accessibility barriers by allowing citizens to speak naturally in multiple regional languages, transcribing and translating audio into actionable platform commands.
 - **Dual-Token Authentication Architecture**: Hardened security using short-lived JWT Access Tokens and HttpOnly, Secure Refresh Tokens rotated via Redis/DB.
 
 ### 👤 User-Facing Workflows
@@ -237,9 +239,9 @@ gcloud run deploy bharat-onestop --image gcr.io/your-project-id/bharat-onestop -
 **Jithu Sudharshan**  
 *Senior Full-Stack Software Engineer*
 
-- 💼 **LinkedIn**: [linkedin.com/in/yourprofile](#)
-- 🌐 **Portfolio**: [yourportfolio.com](#)
-- 📧 **Email**: [your.email@example.com](mailto:your.email@example.com)
+- 💼 **LinkedIn**: [https://www.linkedin.com/in/jithu-sudharshan-a6168a252/](#)
+- 📧 **Email**: [your.email@example.com](mailto:jithu.codes@gmail.com
+)
 
 ---
 
