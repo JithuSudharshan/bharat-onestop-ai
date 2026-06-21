@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export const ProgressRing = ({ progress, size = 120, strokeWidth = 8, label }) => {
+export const ProgressRing = ({ progress, size = 120, strokeWidth = 8, label, textColor = 'text-gray-900' }) => {
   const radius = (size - strokeWidth) / 2;
   const circumference = radius * 2 * Math.PI;
   const offset = circumference - (progress / 100) * circumference;
@@ -40,7 +40,7 @@ export const ProgressRing = ({ progress, size = 120, strokeWidth = 8, label }) =
           />
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-          <span className="text-3xl font-bold tracking-tight text-gray-900">{progress}%</span>
+          <span className={`text-3xl font-bold tracking-tight ${textColor}`}>{progress}%</span>
         </div>
       </div>
       {label && <span className="mt-4 text-sm font-medium text-gray-500">{label}</span>}

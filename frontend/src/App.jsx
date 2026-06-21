@@ -9,6 +9,7 @@ import Schemes from './pages/Schemes';
 import Documents from './pages/Documents';
 import Assistant from './pages/Assistant';
 import Journey from './pages/Journey';
+import ApplicationAssistant from './pages/ApplicationAssistant';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Onboarding from './pages/Onboarding';
@@ -46,6 +47,7 @@ function App() {
             <Route path="documents" element={<Documents />} />
             <Route path="assistant" element={<Assistant />} />
             <Route path="journey" element={<Journey />} />
+            <Route path="application/:schemeId" element={<ApplicationAssistant />} />
           </Route>
           
           <Route path="*" element={<Navigate to="/" replace />} />

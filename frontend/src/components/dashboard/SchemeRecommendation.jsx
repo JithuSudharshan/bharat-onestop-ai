@@ -1,7 +1,8 @@
 import React from 'react';
 import { AnimatedCard } from '../ui/AnimatedCard';
 import { ProgressRing } from '../ui/ProgressRing';
-import { ShieldCheck, ArrowRight, FileText, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, ArrowRight, FileText, CheckCircle2, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 export const SchemeRecommendation = ({ scheme, index }) => {
@@ -69,19 +70,27 @@ export const SchemeRecommendation = ({ scheme, index }) => {
         </div>
       </div>
 
-      {/* Action Bar */}
-      <div className="p-4 bg-white border-t border-gray-100 flex items-center justify-between">
+      <div className="p-4 bg-white border-t border-gray-100 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div className="text-xs text-gray-500">
           Last updated: Today
         </div>
-        <a 
-          href={scheme.applicationUrl || `https://myscheme.gov.in/search?q=${encodeURIComponent(scheme.name)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-medium transition-colors shadow-sm shadow-blue-600/20"
-        >
-          Start Application <ArrowRight size={16} />
-        </a>
+        <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+          <a 
+            href={scheme.applicationUrl || `https://myscheme.gov.in/search?q=${encodeURIComponent(scheme.name)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 bg-white text-gray-700 hover:bg-gray-50 border border-gray-200 px-4 py-2.5 rounded-xl font-medium transition-colors shadow-sm"
+          >
+            Official Portal
+          </a>
+          <Link 
+            to={`/dashboard/application/${encodeURIComponent(scheme.name)}`}
+            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-bold transition-colors shadow-sm shadow-blue-600/20 relative overflow-hidden group"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-indigo-400 opacity-0 group-hover:opacity-20 transition-opacity"></div>
+            <Sparkles size={16} /> Apply with AI <ArrowRight size={16} />
+          </Link>
+        </div>
       </div>
     </AnimatedCard>
   );
