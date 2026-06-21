@@ -58,11 +58,11 @@ Rather than forcing citizens to search through hundreds of isolated state and ce
 
 | Dashboard Interface | Intelligent Scheme Recommendations |
 | :---: | :---: |
-| <img src="https://placehold.co/600x400/png?text=Dashboard+Screenshot" alt="Dashboard" /> | <img src="https://placehold.co/600x400/png?text=Schemes+Screenshot" alt="Schemes" /> |
+| <img width="1909" height="1048" alt="Screenshot from 2026-06-21 08-54-36" src="https://github.com/user-attachments/assets/a35b0d58-cd2d-473d-b92c-0775f08e7ee0" /> | <img width="1904" height="1048" alt="Screenshot from 2026-06-21 08-55-44" src="https://github.com/user-attachments/assets/0efd96c2-8a89-49b9-ab9f-868e35779921" /> |
 
 | Document Vision AI | AI Journey Planner |
 | :---: | :---: |
-| <img src="https://placehold.co/600x400/png?text=Document+Upload" alt="Documents" /> | <img src="https://placehold.co/600x400/png?text=Journey+Timeline" alt="Timeline" /> |
+| <img width="1904" height="1048" alt="Screenshot from 2026-06-21 08-57-00" src="https://github.com/user-attachments/assets/b7a6e72e-e4bc-490e-8ddf-38f49094fc94" /> | <img width="1904" height="1048" alt="Screenshot from 2026-06-21 08-58-05" src="https://github.com/user-attachments/assets/2238625e-df8e-4502-bc0f-2a9cad0cbca9" /> |
 
 *(Replace placeholder URLs with actual project screenshots)*
 
