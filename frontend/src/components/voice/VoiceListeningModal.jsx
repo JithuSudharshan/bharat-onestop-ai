@@ -2,97 +2,81 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mic, MicOff, Send, X, Loader2 } from 'lucide-react';
 import { VoiceWaveform } from './VoiceWaveform';
-import { transcribeAudio } from '../../api/assistantApi';
+import { LanguageSelector } from './LanguageSelector';
 
 export const VoiceListeningModal = ({ isOpen, onClose, onSend }) => {
   const [isListening, setIsListening] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [transcript, setTranscript] = useState('');
-  const [detectedLang, setDetectedLang] = useState('');
+  const [selectedLang, setSelectedLang] = useState('ml-IN'); // Default to Malayalam as requested
   
-  const mediaRecorderRef = useRef(null);
-  const audioChunksRef = useRef([]);
+  const recognitionRef = useRef(null);
 
   useEffect(() => {
     if (!isOpen) {
       cleanup();
     } else {
-      startRecording();
+      initSpeechRecognition();
     }
     return cleanup;
-  }, [isOpen]);
+  }, [isOpen, selectedLang]);
+
+  const initSpeechRecognition = () => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert("Your browser does not support Speech Recognition. Please try Chrome.");
+      onClose();
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = selectedLang;
+
+    recognition.onresult = (event) => {
+      let fullTranscript = '';
+      
+      for (let i = 0; i < event.results.length; ++i) {
+        fullTranscript += event.results[i][0].transcript;
+      }
+      
+      setTranscript(fullTranscript);
+    };
+
+    recognition.onerror = (event) => {
+      console.error("Speech recognition error", event.error);
+      setIsListening(false);
+    };
+
+    recognition.onend = () => {
+      setIsListening(false);
+    };
+
+    recognitionRef.current = recognition;
+  };
 
   const cleanup = () => {
-    if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'recording') {
-      mediaRecorderRef.current.stop();
+    if (recognitionRef.current) {
+      recognitionRef.current.stop();
     }
     setIsListening(false);
     setIsProcessing(false);
     setTranscript('');
-    setDetectedLang('');
-    audioChunksRef.current = [];
-  };
-
-  const startRecording = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({
-        audio: {
-          noiseSuppression: true,
-          echoCancellation: true,
-          autoGainControl: true,
-        }
-      });
-      
-      mediaRecorderRef.current = new MediaRecorder(stream, { mimeType: 'audio/webm' });
-      audioChunksRef.current = [];
-
-      mediaRecorderRef.current.ondataavailable = (event) => {
-        if (event.data.size > 0) {
-          audioChunksRef.current.push(event.data);
-        }
-      };
-
-      mediaRecorderRef.current.onstop = async () => {
-        stream.getTracks().forEach(track => track.stop());
-        const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
-        await handleAudioUpload(audioBlob);
-      };
-
-      mediaRecorderRef.current.start();
-      setIsListening(true);
-    } catch (err) {
-      console.error("Failed to access microphone:", err);
-      alert("Please allow microphone access to use the voice assistant.");
-      onClose();
-    }
-  };
-
-  const handleAudioUpload = async (audioBlob) => {
-    setIsProcessing(true);
-    try {
-      const data = await transcribeAudio(audioBlob);
-      if (data.transcript) {
-        setTranscript(data.transcript);
-        setDetectedLang(data.language);
-      } else {
-        setTranscript("Could not understand the audio. Please try again.");
-      }
-    } catch (err) {
-      console.error(err);
-      setTranscript(err.response?.data?.message || "Error connecting to AI Speech Service.");
-    } finally {
-      setIsProcessing(false);
-    }
   };
 
   const toggleListen = () => {
     if (isListening) {
-      mediaRecorderRef.current?.stop();
+      recognitionRef.current?.stop();
       setIsListening(false);
     } else {
       setTranscript('');
-      setDetectedLang('');
-      startRecording();
+      try {
+        recognitionRef.current?.start();
+        setIsListening(true);
+      } catch (err) {
+        console.error("Failed to start speech recognition:", err);
+      }
     }
   };
 
@@ -128,11 +112,25 @@ export const VoiceListeningModal = ({ isOpen, onClose, onSend }) => {
             <X size={20} />
           </button>
 
-          <div className="mt-2 mb-6 text-center">
-            <h3 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent tracking-tight">
-              Bharat AI Voice
-            </h3>
-            <p className="text-gray-400 text-sm mt-1.5">Speak naturally in any Indian language</p>
+          <div className="mt-2 mb-4 text-center w-full flex justify-between items-center px-2">
+            <div className="text-left">
+              <h3 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent tracking-tight">
+                Bharat AI Voice
+              </h3>
+              <p className="text-gray-400 text-sm mt-0.5">Speak naturally</p>
+            </div>
+            <LanguageSelector 
+              selectedLang={selectedLang} 
+              onSelect={(lang) => {
+                setSelectedLang(lang);
+                if (isListening) {
+                  // restart with new lang
+                  toggleListen();
+                  setTimeout(() => toggleListen(), 100);
+                }
+              }} 
+              disabled={isListening}
+            />
           </div>
 
           <div className="my-8 relative">
@@ -169,18 +167,13 @@ export const VoiceListeningModal = ({ isOpen, onClose, onSend }) => {
               <div className="absolute inset-0 flex items-center justify-center bg-gray-900/80 backdrop-blur-sm rounded-2xl z-10">
                 <div className="flex items-center gap-3 text-blue-400">
                   <Loader2 size={20} className="animate-spin" />
-                  <span className="font-medium">Transcribing with Google Cloud...</span>
+                  <span className="font-medium">Analyzing Audio via Gemini...</span>
                 </div>
               </div>
             )}
             
             <div className="flex justify-between items-center mb-2 px-1">
-              <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Transcript</span>
-              {detectedLang && (
-                <span className="text-[10px] bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded-full border border-blue-500/30">
-                  {detectedLang}
-                </span>
-              )}
+              <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Live Transcript</span>
             </div>
             
             <textarea

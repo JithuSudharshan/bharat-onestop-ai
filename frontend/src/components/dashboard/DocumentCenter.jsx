@@ -68,12 +68,29 @@ export const DocumentCenter = () => {
               </div>
               
               <div className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-white space-y-2">
-                {Object.entries(result.extractedData || {}).map(([key, val]) => (
-                  <div key={key} className="flex justify-between items-center py-1">
-                    <span className="text-sm text-gray-500 capitalize">{key}</span>
-                    <span className="text-sm font-bold text-gray-900">{val}</span>
-                  </div>
-                ))}
+                {Object.entries(result.extractedData || {}).map(([key, val]) => {
+                  if (key === 'confidence' || key === 'missingInformation') return null; // Skip noisy metadata
+                  
+                  return (
+                    <div key={key} className="flex flex-col py-2 border-b border-gray-100 last:border-0">
+                      <span className="text-sm text-gray-500 capitalize mb-1">{key}</span>
+                      {typeof val === 'object' && val !== null ? (
+                        <div className="flex flex-col gap-1 pl-2 border-l-2 border-blue-100">
+                          {Object.entries(val).map(([subKey, subVal]) => (
+                            subVal !== null && subVal !== '' && (
+                              <div key={subKey} className="flex justify-between items-center">
+                                <span className="text-xs text-gray-400 capitalize">{subKey}</span>
+                                <span className="text-xs font-bold text-gray-900">{String(subVal)}</span>
+                              </div>
+                            )
+                          ))}
+                        </div>
+                      ) : (
+                        <span className="text-sm font-bold text-gray-900">{val !== null ? String(val) : 'N/A'}</span>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
               
               <div className="mt-4 flex items-center justify-center gap-2 text-xs font-bold text-green-700 uppercase tracking-wider">

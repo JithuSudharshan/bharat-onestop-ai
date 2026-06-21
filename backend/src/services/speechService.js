@@ -3,9 +3,10 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 /**
  * Sends audio to Gemini for multilingual transcription
  * @param {Buffer} audioBuffer - The audio file buffer
+ * @param {string} mimeType - The mime type of the audio
  * @returns {Promise<{transcript: string, language: string}>}
  */
-const transcribeAudio = async (audioBuffer) => {
+const transcribeAudio = async (audioBuffer, mimeType = 'audio/webm') => {
   try {
     const apiKey = process.env.GEMINI_API_KEY;
     const genAI = new GoogleGenerativeAI(apiKey);
@@ -25,7 +26,7 @@ const transcribeAudio = async (audioBuffer) => {
     const audioPart = {
       inlineData: {
         data: audioBuffer.toString("base64"),
-        mimeType: "audio/webm"
+        mimeType: mimeType
       }
     };
 

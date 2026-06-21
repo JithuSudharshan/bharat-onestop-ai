@@ -68,7 +68,7 @@ export const AIAssistant = () => {
   }, [messages, loading]);
 
   const handleVoiceSend = (transcript) => {
-    handleSend(transcript);
+    handleSend(transcript, true);
   };
 
   const toggleTTS = (text, index) => {
@@ -85,14 +85,14 @@ export const AIAssistant = () => {
     }
   };
 
-  const handleSend = async (text = input) => {
+  const handleSend = async (text = input, isVoice = false) => {
     if (!text.trim()) return;
     setMessages(prev => [...prev, { role: 'user', text }]);
     setInput('');
     setLoading(true);
     
     try {
-      const result = await sendChatMessage(text, messages);
+      const result = await sendChatMessage(text, messages, isVoice);
       setMessages(prev => [...prev, { role: 'model', text: result.response }]);
     } catch (err) {
       setMessages(prev => [...prev, { role: 'model', text: "Sorry, I encountered an error communicating with the orchestration layer." }]);
@@ -104,7 +104,7 @@ export const AIAssistant = () => {
   const prompts = ["Find education schemes", "Check my eligibility", "Explain income certificate"];
 
   return (
-    <AnimatedCard className="flex flex-col h-[600px] bg-white border-gray-100">
+    <div className="flex flex-col h-full w-full bg-white border border-gray-200 shadow-xl shadow-gray-200/50 rounded-3xl overflow-hidden relative">
       {/* Chat Header */}
       <div className="p-4 border-b border-gray-100 bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-between text-white">
         <div className="flex items-center gap-3">
@@ -216,6 +216,6 @@ export const AIAssistant = () => {
         onClose={() => setIsVoiceModalOpen(false)} 
         onSend={handleVoiceSend} 
       />
-    </AnimatedCard>
+    </div>
   );
 };

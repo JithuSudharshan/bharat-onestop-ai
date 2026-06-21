@@ -3,10 +3,11 @@ const CitizenUnderstandingAgent = require('../ai/agents/CitizenUnderstandingAgen
 const SchemeRecommendationAgent = require('../ai/agents/SchemeRecommendationAgent');
 const profileService = require('../services/profileService');
 const { transcribeAudio } = require('../services/speechService');
+const { normalizeTranscript } = require('../services/transcriptNormalizer');
 
 const chat = async (req, res, next) => {
   try {
-    const { message, history = [] } = req.body;
+    const { message, history = [], isVoice } = req.body;
 
     // Load citizen profile
     let profile;
@@ -26,8 +27,17 @@ const chat = async (req, res, next) => {
       });
     }
 
+    // If the input came from voice, clean it up first
+    let finalMessage = message;
+    if (isVoice) {
+      const normalizedData = await normalizeTranscript(message);
+      finalMessage = normalizedData.normalized;
+      // We could also pass normalizedData.intent to the orchestrator to skip a step,
+      // but for now, we just pass the cleanly normalized native-language string.
+    }
+
     // Call orchestrator
-    const result = await orchestrate({ profile, message, history });
+    const result = await orchestrate({ profile, message: finalMessage, history });
 
     res.status(200).json({
       success: true,
@@ -105,7 +115,8 @@ const processAudio = async (req, res, next) => {
     }
 
     // Call our new Speech Service which interacts with Google Cloud Speech REST API
-    const { transcript, language } = await transcribeAudio(req.file.buffer);
+    const mimeType = req.body.mimeType || 'audio/webm';
+    const { transcript, language } = await transcribeAudio(req.file.buffer, mimeType);
 
     res.status(200).json({
       success: true,
