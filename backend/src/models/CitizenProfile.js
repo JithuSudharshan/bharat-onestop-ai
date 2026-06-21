@@ -36,8 +36,37 @@ const citizenProfileSchema = new mongoose.Schema(
       min: [0, 'Age must be a positive number'],
       max: [120, 'Age cannot exceed 120'],
     },
+    gender: {
+      type: String,
+      trim: true,
+    },
+    dateOfBirth: {
+      type: String,
+      trim: true,
+    },
+    caste: {
+      type: String,
+      trim: true,
+    },
+    religion: {
+      type: String,
+      trim: true,
+    },
+    maritalStatus: {
+      type: String,
+      trim: true,
+    },
+    disabilityStatus: {
+      type: Boolean,
+      default: false,
+    },
 
     // Location
+    house: { type: String, trim: true },
+    street: { type: String, trim: true },
+    village_town: { type: String, trim: true },
+    subDistrict: { type: String, trim: true },
+    pincode: { type: String, trim: true },
     state: {
       type: String,
       required: [true, 'State is required'],
@@ -68,6 +97,12 @@ const citizenProfileSchema = new mongoose.Schema(
         'other',
       ],
     },
+    educationDetails: {
+      institution: { type: String, trim: true },
+      stream: { type: String, trim: true },
+      passingYear: { type: Number },
+      marksPercentage: { type: Number, min: 0, max: 100 },
+    },
     income: {
       annualIncome: {
         type: Number,
@@ -77,6 +112,13 @@ const citizenProfileSchema = new mongoose.Schema(
         type: String,
         default: 'INR',
       },
+      certificateId: { type: String, trim: true },
+      validUntil: { type: String, trim: true },
+    },
+    employment: {
+      company: { type: String, trim: true },
+      role: { type: String, trim: true },
+      experienceYears: { type: Number },
     },
 
     // Family

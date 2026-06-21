@@ -36,20 +36,39 @@ const processUploadedDocument = async (userId, file) => {
         // Personal
         if (extractedData.personal?.name && !existingProfile.name) updates.name = extractedData.personal.name;
         if (extractedData.personal?.age && !existingProfile.age) updates.age = extractedData.personal.age;
+        if (extractedData.personal?.gender) updates.gender = extractedData.personal.gender;
+        if (extractedData.personal?.dateOfBirth) updates.dateOfBirth = extractedData.personal.dateOfBirth;
+        if (extractedData.personal?.caste) updates.caste = extractedData.personal.caste;
+        if (extractedData.personal?.religion) updates.religion = extractedData.personal.religion;
+        if (extractedData.personal?.maritalStatus) updates.maritalStatus = extractedData.personal.maritalStatus;
+        if (extractedData.personal?.disabilityStatus !== undefined) updates.disabilityStatus = extractedData.personal.disabilityStatus;
         
         // Address
         if (extractedData.address?.state && !existingProfile.state) updates.state = extractedData.address.state;
         if (extractedData.address?.district && !existingProfile.district) updates.district = extractedData.address.district;
+        if (extractedData.address?.house) updates.house = extractedData.address.house;
+        if (extractedData.address?.street) updates.street = extractedData.address.street;
+        if (extractedData.address?.village_town) updates.village_town = extractedData.address.village_town;
+        if (extractedData.address?.subDistrict) updates.subDistrict = extractedData.address.subDistrict;
+        if (extractedData.address?.pincode) updates.pincode = extractedData.address.pincode;
 
         // Income
-        if (extractedData.income?.annualIncome && (!existingProfile.income || !existingProfile.income.annualIncome)) {
+        if (extractedData.income?.annualIncome) {
           updates.income = existingProfile.income || {};
           updates.income.annualIncome = extractedData.income.annualIncome;
+          if (extractedData.income.certificateId) updates.income.certificateId = extractedData.income.certificateId;
+          if (extractedData.income.validUntil) updates.income.validUntil = extractedData.income.validUntil;
         }
 
         // Employment
         if (extractedData.employment?.occupation && !existingProfile.occupation) {
           updates.occupation = extractedData.employment.occupation;
+        }
+        if (extractedData.employment) {
+          updates.employment = existingProfile.employment || {};
+          if (extractedData.employment.company) updates.employment.company = extractedData.employment.company;
+          if (extractedData.employment.role) updates.employment.role = extractedData.employment.role;
+          if (extractedData.employment.experienceYears) updates.employment.experienceYears = extractedData.employment.experienceYears;
         }
 
         // Education (We rely on validation, if it fails, the update will throw but we catch it)
@@ -63,6 +82,14 @@ const processUploadedDocument = async (userId, file) => {
           else if (qual.includes('diploma')) updates.education = 'diploma';
           else if (qual.includes('doctorate')) updates.education = 'doctorate';
           else updates.education = 'other';
+        }
+
+        if (extractedData.education) {
+          updates.educationDetails = existingProfile.educationDetails || {};
+          if (extractedData.education.institution) updates.educationDetails.institution = extractedData.education.institution;
+          if (extractedData.education.stream) updates.educationDetails.stream = extractedData.education.stream;
+          if (extractedData.education.passingYear) updates.educationDetails.passingYear = extractedData.education.passingYear;
+          if (extractedData.education.marksPercentage) updates.educationDetails.marksPercentage = extractedData.education.marksPercentage;
         }
         
         // Update logic can be made more sophisticated based on document confidence

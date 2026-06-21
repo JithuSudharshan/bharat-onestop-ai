@@ -2,7 +2,7 @@ import React from 'react';
 import { useCitizenProfile } from '../hooks/useCitizenProfile';
 import { AILoader } from '../components/ui/AILoader';
 import { AnimatedCard } from '../components/ui/AnimatedCard';
-import { User, MapPin, Briefcase, GraduationCap, ShieldCheck, Zap, AlertTriangle, Activity, CheckCircle2 } from 'lucide-react';
+import { User, MapPin, Briefcase, GraduationCap, ShieldCheck, Zap, AlertTriangle, Activity, CheckCircle2, Calendar, Fingerprint, Map, Building2, ScrollText, Landmark } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const ConfidenceRing = ({ score }) => {
@@ -118,28 +118,80 @@ const Profile = () => {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
         
         {/* 2. Personal Intelligence */}
-        <div className="col-span-1 md:col-span-6 lg:col-span-4">
-          <IntelligenceSection icon={User} title="Identity Graph" score={personalScore}>
+        <div className="col-span-1 md:col-span-6 lg:col-span-6">
+          <IntelligenceSection icon={Fingerprint} title="Identity Graph" score={personalScore}>
             <div className="space-y-4">
-              <div className="flex justify-between items-center pb-3 border-b border-gray-100">
-                <span className="text-xs uppercase tracking-wider text-gray-500 font-bold">Age</span>
-                <span className="text-sm font-semibold text-gray-900">{profile?.age ? `${profile.age} Yrs` : '--'}</span>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="pb-3 border-b border-gray-100">
+                  <span className="text-[10px] uppercase tracking-wider text-gray-500 font-bold block mb-1">Age</span>
+                  <span className="text-sm font-semibold text-gray-900">{profile?.age ? `${profile.age} Yrs` : '--'}</span>
+                </div>
+                <div className="pb-3 border-b border-gray-100">
+                  <span className="text-[10px] uppercase tracking-wider text-gray-500 font-bold block mb-1">Gender</span>
+                  <span className="text-sm font-semibold text-gray-900 capitalize">{profile?.gender || '--'}</span>
+                </div>
               </div>
-              <div className="flex justify-between items-center pb-3 border-b border-gray-100">
-                <span className="text-xs uppercase tracking-wider text-gray-500 font-bold">Location</span>
-                <span className="text-sm font-semibold text-gray-900 text-right">{profile?.district ? `${profile.district}, ${profile.state}` : '--'}</span>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="pb-3 border-b border-gray-100">
+                  <span className="text-[10px] uppercase tracking-wider text-gray-500 font-bold block mb-1">Date of Birth</span>
+                  <span className="text-sm font-semibold text-gray-900">{profile?.dateOfBirth || '--'}</span>
+                </div>
+                <div className="pb-3 border-b border-gray-100">
+                  <span className="text-[10px] uppercase tracking-wider text-gray-500 font-bold block mb-1">Marital Status</span>
+                  <span className="text-sm font-semibold text-gray-900 capitalize">{profile?.maritalStatus || '--'}</span>
+                </div>
               </div>
-              <div className="flex justify-between items-center">
-                <span className="text-xs uppercase tracking-wider text-gray-500 font-bold">Occupation</span>
-                <span className="text-sm font-semibold text-gray-900">{profile?.occupation || '--'}</span>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <span className="text-[10px] uppercase tracking-wider text-gray-500 font-bold block mb-1">Caste / Category</span>
+                  <span className="text-sm font-semibold text-gray-900">{profile?.caste || '--'}</span>
+                </div>
+                <div>
+                  <span className="text-[10px] uppercase tracking-wider text-gray-500 font-bold block mb-1">Religion</span>
+                  <span className="text-sm font-semibold text-gray-900">{profile?.religion || '--'}</span>
+                </div>
               </div>
             </div>
           </IntelligenceSection>
         </div>
 
-        {/* 3. Financial Intelligence */}
-        <div className="col-span-1 md:col-span-6 lg:col-span-4">
-          <IntelligenceSection icon={Briefcase} title="Financial Profile" score={financialScore}>
+        {/* 3. Location Intelligence */}
+        <div className="col-span-1 md:col-span-6 lg:col-span-6">
+          <IntelligenceSection icon={Map} title="Location Intelligence" score={profile?.district ? 100 : 20}>
+            <div className="space-y-4">
+              <div className="pb-3 border-b border-gray-100">
+                <span className="text-[10px] uppercase tracking-wider text-gray-500 font-bold block mb-1">Primary Address</span>
+                <span className="text-sm font-semibold text-gray-900 line-clamp-2">
+                  {[profile?.house, profile?.street, profile?.village_town].filter(Boolean).join(', ') || '--'}
+                </span>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="pb-3 border-b border-gray-100">
+                  <span className="text-[10px] uppercase tracking-wider text-gray-500 font-bold block mb-1">District</span>
+                  <span className="text-sm font-semibold text-gray-900">{profile?.district || '--'}</span>
+                </div>
+                <div className="pb-3 border-b border-gray-100">
+                  <span className="text-[10px] uppercase tracking-wider text-gray-500 font-bold block mb-1">State</span>
+                  <span className="text-sm font-semibold text-gray-900">{profile?.state || '--'}</span>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <span className="text-[10px] uppercase tracking-wider text-gray-500 font-bold block mb-1">Pincode</span>
+                  <span className="text-sm font-semibold text-gray-900">{profile?.pincode || '--'}</span>
+                </div>
+                <div>
+                  <span className="text-[10px] uppercase tracking-wider text-gray-500 font-bold block mb-1">Sub-District (Taluk)</span>
+                  <span className="text-sm font-semibold text-gray-900">{profile?.subDistrict || '--'}</span>
+                </div>
+              </div>
+            </div>
+          </IntelligenceSection>
+        </div>
+
+        {/* 4. Financial Intelligence */}
+        <div className="col-span-1 md:col-span-6 lg:col-span-6">
+          <IntelligenceSection icon={Landmark} title="Financial Profile" score={financialScore}>
             <div className="space-y-4">
               <div className="flex justify-between items-center pb-3 border-b border-gray-100">
                 <span className="text-xs uppercase tracking-wider text-gray-500 font-bold">Annual Income</span>
@@ -148,25 +200,37 @@ const Profile = () => {
                 </span>
               </div>
               <div className="flex justify-between items-center pb-3 border-b border-gray-100">
-                <span className="text-xs uppercase tracking-wider text-gray-500 font-bold">Category</span>
-                <span className="text-sm font-semibold text-gray-900">
-                  {profile?.income?.annualIncome < 250000 ? 'EWS' : 'Standard'}
-                </span>
+                <span className="text-xs uppercase tracking-wider text-gray-500 font-bold">Income Cert ID</span>
+                <span className="text-sm font-mono text-gray-900">{profile?.income?.certificateId || '--'}</span>
               </div>
-              <div className="flex justify-between items-center">
-                <span className="text-xs uppercase tracking-wider text-gray-500 font-bold">Verification</span>
-                <span className={`text-xs font-bold px-2 py-1 rounded-md ${profile?.income?.annualIncome ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'}`}>
-                  {profile?.income?.annualIncome ? 'Document Verified' : 'Self Declared'}
-                </span>
+              <div className="flex justify-between items-center pb-3 border-b border-gray-100">
+                <span className="text-xs uppercase tracking-wider text-gray-500 font-bold">Valid Until</span>
+                <span className="text-sm font-semibold text-gray-900">{profile?.income?.validUntil || '--'}</span>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <span className="text-[10px] uppercase tracking-wider text-gray-500 font-bold block mb-1">Occupation</span>
+                  <span className="text-sm font-semibold text-gray-900">{profile?.occupation || '--'}</span>
+                </div>
+                <div>
+                  <span className="text-[10px] uppercase tracking-wider text-gray-500 font-bold block mb-1">Company / Role</span>
+                  <span className="text-sm font-semibold text-gray-900">
+                    {[profile?.employment?.role, profile?.employment?.company].filter(Boolean).join(' at ') || '--'}
+                  </span>
+                </div>
               </div>
             </div>
           </IntelligenceSection>
         </div>
 
-        {/* 4. Education Intelligence */}
-        <div className="col-span-1 md:col-span-12 lg:col-span-4">
+        {/* 5. Education Intelligence */}
+        <div className="col-span-1 md:col-span-6 lg:col-span-6">
           <IntelligenceSection icon={GraduationCap} title="Academic Status" score={educationScore}>
             <div className="space-y-4">
+              <div className="pb-3 border-b border-gray-100">
+                <span className="text-[10px] uppercase tracking-wider text-gray-500 font-bold block mb-1">Institution Name</span>
+                <span className="text-sm font-semibold text-gray-900 line-clamp-1">{profile?.educationDetails?.institution || '--'}</span>
+              </div>
               <div className="flex justify-between items-center pb-3 border-b border-gray-100">
                 <span className="text-xs uppercase tracking-wider text-gray-500 font-bold">Highest Level</span>
                 <span className="text-sm font-semibold text-gray-900 capitalize">
@@ -174,14 +238,18 @@ const Profile = () => {
                 </span>
               </div>
               <div className="flex justify-between items-center pb-3 border-b border-gray-100">
-                <span className="text-xs uppercase tracking-wider text-gray-500 font-bold">Institution</span>
-                <span className="text-sm font-semibold text-gray-900">Not Extracted</span>
+                <span className="text-xs uppercase tracking-wider text-gray-500 font-bold">Stream / Course</span>
+                <span className="text-sm font-semibold text-gray-900">{profile?.educationDetails?.stream || '--'}</span>
               </div>
-              <div className="flex justify-between items-center">
-                <span className="text-xs uppercase tracking-wider text-gray-500 font-bold">AI Status</span>
-                <span className="text-xs font-bold px-2 py-1 bg-blue-100 text-blue-700 rounded-md">
-                  Active
-                </span>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <span className="text-[10px] uppercase tracking-wider text-gray-500 font-bold block mb-1">Passing Year</span>
+                  <span className="text-sm font-semibold text-gray-900">{profile?.educationDetails?.passingYear || '--'}</span>
+                </div>
+                <div>
+                  <span className="text-[10px] uppercase tracking-wider text-gray-500 font-bold block mb-1">Marks (%)</span>
+                  <span className="text-sm font-semibold text-gray-900">{profile?.educationDetails?.marksPercentage ? `${profile.educationDetails.marksPercentage}%` : '--'}</span>
+                </div>
               </div>
             </div>
           </IntelligenceSection>
