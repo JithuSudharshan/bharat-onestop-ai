@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 
 export const QuickActions = () => {
   const actions = [
-    { title: "Find Schemes", icon: Search, color: "text-blue-600", bg: "bg-blue-50", link: "/schemes" },
-    { title: "Upload Docs", icon: Upload, color: "text-indigo-600", bg: "bg-indigo-50", link: "/documents" },
-    { title: "Update Profile", icon: FileText, color: "text-purple-600", bg: "bg-purple-50", link: "/profile" },
+    { title: "Find Schemes", icon: Search, color: "text-blue-600", bg: "bg-blue-50", link: "/dashboard/schemes" },
+    { title: "Upload Docs", icon: Upload, color: "text-indigo-600", bg: "bg-indigo-50", link: "/dashboard/documents" },
+    { title: "Update Profile", icon: FileText, color: "text-purple-600", bg: "bg-purple-50", link: "/dashboard/profile" },
   ];
 
   return (

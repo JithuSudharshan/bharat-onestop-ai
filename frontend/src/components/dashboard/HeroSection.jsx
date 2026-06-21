@@ -2,8 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, ArrowRight } from 'lucide-react';
 import { TrustBadge } from './TrustBadge';
+import { useNavigate } from 'react-router-dom';
 
 export const HeroSection = ({ profile, schemeCount }) => {
+  const navigate = useNavigate();
   return (
     <div className="relative overflow-hidden bg-gradient-to-br from-[#0A1128] to-[#16213E] rounded-3xl p-8 md:p-12 text-white shadow-xl">
       {/* Decorative blurred background elements */}
@@ -49,10 +51,16 @@ export const HeroSection = ({ profile, schemeCount }) => {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="flex flex-wrap gap-4"
         >
-          <button className="px-6 py-3 bg-white text-[#0A1128] font-bold rounded-xl hover:bg-gray-50 transition-colors shadow-lg shadow-white/10 flex items-center gap-2">
+          <button 
+            onClick={() => navigate('/dashboard/schemes')}
+            className="px-6 py-3 bg-white text-[#0A1128] font-bold rounded-xl hover:bg-gray-50 transition-colors shadow-lg shadow-white/10 flex items-center gap-2"
+          >
             View My Benefits <ArrowRight size={18} />
           </button>
-          <button className="px-6 py-3 bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium rounded-xl hover:bg-white/20 transition-colors">
+          <button 
+            onClick={() => navigate('/dashboard/profile')}
+            className="px-6 py-3 bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium rounded-xl hover:bg-white/20 transition-colors"
+          >
             Update Profile
           </button>
         </motion.div>

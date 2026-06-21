@@ -5,13 +5,16 @@ import { CitizenJourney } from '../components/dashboard/CitizenJourney';
 import { EligibilityCard } from '../components/dashboard/EligibilityCard';
 import { QuickActions } from '../components/dashboard/QuickActions';
 import { useCitizenProfile } from '../hooks/useCitizenProfile';
+import { useSchemes } from '../hooks/useSchemes';
 import { AILoader } from '../components/ui/AILoader';
 import { motion } from 'framer-motion';
+import { AlertTriangle } from 'lucide-react';
 
 const Dashboard = () => {
-  const { profile, loading, error } = useCitizenProfile();
+  const { profile, loading: profileLoading, error: profileError } = useCitizenProfile();
+  const { schemes } = useSchemes();
 
-  if (loading) {
+  if (profileLoading) {
     return (
       <div className="flex flex-col items-center justify-center h-[60vh]">
         <AILoader />
@@ -20,8 +23,16 @@ const Dashboard = () => {
     );
   }
 
-  if (error) {
-    return <div className="text-red-500">Error loading dashboard: {error}</div>;
+  if (profileError) {
+    return (
+      <div className="flex flex-col items-center justify-center h-[60vh]">
+        <div className="bg-red-50 text-red-500 p-6 rounded-2xl border border-red-100 shadow-sm max-w-md text-center">
+          <AlertTriangle size={32} className="mx-auto mb-4 text-red-400" />
+          <h3 className="text-lg font-bold mb-2">Error Loading Dashboard</h3>
+          <p className="text-sm">{profileError}</p>
+        </div>
+      </div>
+    );
   }
 
   const container = {
@@ -42,7 +53,7 @@ const Dashboard = () => {
       className="max-w-7xl mx-auto space-y-6"
     >
       {/* Top Section */}
-      <HeroSection profile={profile} schemeCount={2} />
+      <HeroSection profile={profile} schemeCount={schemes?.length || 0} />
 
       {/* Bento Grid layout */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6">

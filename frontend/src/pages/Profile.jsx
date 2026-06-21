@@ -65,11 +65,20 @@ const Profile = () => {
     );
   }
 
-  // Mock confidence scores based on profile completeness
-  const overallScore = profile?.isProfileComplete ? 92 : 45;
-  const personalScore = profile?.name && profile?.age ? 98 : 30;
-  const financialScore = profile?.income?.annualIncome ? 95 : 20;
-  const educationScore = profile?.education ? 88 : 15;
+  const calculateCompleteness = (fields) => {
+    if (!profile) return 0;
+    const filled = fields.filter(f => {
+      const val = f.split('.').reduce((o, i) => o?.[i], profile);
+      return val !== undefined && val !== null && val !== '';
+    });
+    return Math.round((filled.length / fields.length) * 100);
+  };
+
+  const personalScore = calculateCompleteness(['name', 'age', 'gender', 'dateOfBirth', 'maritalStatus', 'caste', 'religion']);
+  const locationScore = calculateCompleteness(['house', 'street', 'village_town', 'district', 'state', 'pincode', 'subDistrict']);
+  const financialScore = calculateCompleteness(['income.annualIncome', 'income.certificateId', 'occupation', 'employment.company', 'employment.role']);
+  const educationScore = calculateCompleteness(['education', 'educationDetails.institution', 'educationDetails.stream', 'educationDetails.passingYear']);
+  const overallScore = Math.round((personalScore + locationScore + financialScore + educationScore) / 4) || 0;
 
   return (
     <motion.div 
@@ -157,7 +166,7 @@ const Profile = () => {
 
         {/* 3. Location Intelligence */}
         <div className="col-span-1 md:col-span-6 lg:col-span-6">
-          <IntelligenceSection icon={Map} title="Location Intelligence" score={profile?.district ? 100 : 20}>
+          <IntelligenceSection icon={Map} title="Location Intelligence" score={locationScore}>
             <div className="space-y-4">
               <div className="pb-3 border-b border-gray-100">
                 <span className="text-[10px] uppercase tracking-wider text-gray-500 font-bold block mb-1">Primary Address</span>

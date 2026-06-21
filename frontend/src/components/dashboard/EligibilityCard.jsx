@@ -5,15 +5,14 @@ import { Check, AlertTriangle } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export const EligibilityCard = ({ profile }) => {
-  // Mock calculation based on profile completion
-  const score = profile?.isProfileComplete ? 96 : 40;
-  
   const matched = [
     { label: "Age Verified", valid: !!profile?.age },
     { label: "Location Identified", valid: !!profile?.state },
     { label: "Income Declared", valid: !!profile?.income?.annualIncome },
     { label: "Occupation Matched", valid: !!profile?.occupation }
   ];
+
+  const score = Math.round((matched.filter(m => m.valid).length / matched.length) * 100) || 0;
 
   const missing = [];
   if (!profile?.income?.annualIncome || !profile?.income?.certificateId) {
