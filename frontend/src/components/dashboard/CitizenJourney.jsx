@@ -3,12 +3,14 @@ import { AnimatedCard } from '../ui/AnimatedCard';
 import { Check, Clock, CircleDashed } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-export const CitizenJourney = () => {
+export const CitizenJourney = ({ profile }) => {
+  const isDocVerified = !!profile?.income?.certificateId || !!profile?.educationDetails?.institution;
+
   const steps = [
-    { title: "Profile Creation", status: "completed", date: "Today" },
-    { title: "AI Analysis", status: "completed", date: "Today" },
-    { title: "Scheme Discovery", status: "completed", date: "Just now" },
-    { title: "Document Verification", status: "current", date: "Pending" },
+    { title: "Profile Creation", status: "completed", date: "Done" },
+    { title: "AI Analysis", status: profile?.isProfileComplete ? "completed" : "current", date: profile?.isProfileComplete ? "Done" : "Pending" },
+    { title: "Scheme Discovery", status: profile?.isProfileComplete ? "completed" : "upcoming", date: profile?.isProfileComplete ? "Done" : "" },
+    { title: "Document Verification", status: isDocVerified ? "completed" : (profile?.isProfileComplete ? "current" : "upcoming"), date: isDocVerified ? "Done" : "" },
     { title: "Application Submit", status: "upcoming", date: "" }
   ];
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import { Home, User, FileText, Upload, MessageSquare, Bell, Search, LogOut, Settings } from 'lucide-react';
+import { Home, User, FileText, Upload, MessageSquare, Bell, Search, LogOut, Settings, Route } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { TrustBadge } from '../components/dashboard/TrustBadge';
 import { useAuth } from '../context/AuthContext';
@@ -14,6 +14,7 @@ const DashboardLayout = () => {
     { name: 'Schemes', path: '/dashboard/schemes', icon: FileText },
     { name: 'Documents', path: '/dashboard/documents', icon: Upload },
     { name: 'AI Assistant', path: '/dashboard/assistant', icon: MessageSquare },
+    { name: 'Journey', path: '/dashboard/journey', icon: Route },
   ];
 
   return (

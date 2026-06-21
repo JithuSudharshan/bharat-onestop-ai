@@ -38,7 +38,9 @@ export const HeroSection = ({ profile, schemeCount }) => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-lg md:text-xl text-blue-100/90 leading-relaxed mb-8"
         >
-          Based on your profile intelligence, Bharat OneStop has identified <span className="font-bold text-white">{schemeCount} government benefits</span> you may qualify for today.
+          {profile?.isProfileComplete 
+            ? "Based on your profile intelligence, Bharat OneStop has identified active government benefits you may qualify for today." 
+            : "Complete your profile intelligence to let Bharat AI discover government benefits you automatically qualify for."}
         </motion.p>
         
         <motion.div

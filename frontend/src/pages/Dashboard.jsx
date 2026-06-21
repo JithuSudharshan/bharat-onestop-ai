@@ -53,7 +53,7 @@ const Dashboard = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <AIInsightsPanel profile={profile} />
-            <CitizenJourney />
+            <CitizenJourney profile={profile} />
           </div>
         </div>
 

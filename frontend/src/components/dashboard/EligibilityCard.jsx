@@ -9,16 +9,22 @@ export const EligibilityCard = ({ profile }) => {
   const score = profile?.isProfileComplete ? 96 : 40;
   
   const matched = [
-    { label: "Age Verified", valid: true },
-    { label: "Income Declared", valid: !!profile?.income },
+    { label: "Age Verified", valid: !!profile?.age },
     { label: "Location Identified", valid: !!profile?.state },
+    { label: "Income Declared", valid: !!profile?.income?.annualIncome },
     { label: "Occupation Matched", valid: !!profile?.occupation }
   ];
 
-  const missing = [
-    { label: "Income Certificate not uploaded", critical: true },
-    { label: "Aadhaar pending verification", critical: false }
-  ];
+  const missing = [];
+  if (!profile?.income?.annualIncome || !profile?.income?.certificateId) {
+    missing.push({ label: "Income Certificate not uploaded", critical: true });
+  }
+  if (!profile?.educationDetails?.institution) {
+    missing.push({ label: "Education Records pending", critical: false });
+  }
+  if (!profile?.house || !profile?.pincode) {
+    missing.push({ label: "Address Proof pending", critical: false });
+  }
 
   return (
     <AnimatedCard className="bg-white p-6">
